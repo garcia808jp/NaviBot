@@ -1,7 +1,7 @@
 .DEFAULT_GOAL: NaviBot
 .PHONY: prep get tidy update test clean
 
-NaviBot :
+NaviBot:
 	go build -o NaviBot main.go
 
 prep: get tidy
