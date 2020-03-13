@@ -23,7 +23,6 @@ var (
 )
 
 // Init function
-// load environment variables from the .nenv file
 func init() {
 	// Welcome message
 	fmt.Println("NaviBot: Discord bot for digital assistance")
@@ -32,10 +31,10 @@ func init() {
 	err := godotenv.Load(".nenv")
 	if err != nil {
 		fmt.Println("error loading .nenv file,")
-
+		return
 	}
 
-	// Get the Discord token and the bot prefix
+	// Load environment variables from the .nenv file
 	token = os.Getenv("TOKEN")
 	prefix = os.Getenv("PREFIX")
 }
@@ -49,7 +48,7 @@ func main() {
 		return
 	}
 
-	// Register the messageCreate func as a callback for MessageCreate events.
+	// Do something in messageCreate when a message is created
 	dg.AddHandler(messageCreate)
 
 	// Open the Discord session
@@ -59,10 +58,10 @@ func main() {
 		return
 	}
 
-	// Output the values from the variables above
-	fmt.Printf("\n\tTOKEN=\"%v\"\n\tPREFIX=\"%v\"\n", token, prefix)
+	// Output the values from nenv
+	fmt.Printf("\n\tTOKEN=%T\n\tPREFIX=\"%v\"\n", token, prefix)
 
-	// Run until a signal to terminal is received
+	// Run until a signal to terminate is received
 	fmt.Println("\nNavibot ready and running :3")
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
@@ -72,24 +71,22 @@ func main() {
 	dg.Close()
 }
 
-// This function will be called (due to AddHandler above) every time a new
-// message is created on any channel that the autenticated bot has access to.
+// Respond to messages
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
-
+	// Respond to messages containing the prefix
 	if strings.HasPrefix(m.Content, prefix) {
 		// Ignore all messages created by the bot itself
-		// This isn't required in this specific example but it's a good practice.
 		if m.Author.ID == s.State.User.ID {
 			return
 		}
-		// If the message is "ping" reply with "Pong!"
-		if m.Content == "ping" {
-			s.ChannelMessageSend(m.ChannelID, "Pong!")
-		}
 
-		// If the message is "pong" reply with "Ping!"
-		if m.Content == "pong" {
-			s.ChannelMessageSend(m.ChannelID, "Ping!")
+		// If the message is "ping" reply with "pongo"
+		if m.Content == prefix+"ping" {
+			s.ChannelMessageSend(m.ChannelID, "pongo")
+		}
+		// If the message is "pong" reply with "pingo"
+		if m.Content == prefix+"pong" {
+			s.ChannelMessageSend(m.ChannelID, "pingo")
 		}
 	}
 }
