@@ -10,7 +10,7 @@ import (
 	"os"
 	"os/signal"
 	"strings"
-	"syscall"
+	"time"
 
 	// Third-party packages
 	"github.com/bwmarrin/discordgo"
@@ -18,12 +18,16 @@ import (
 )
 
 var (
-	token  string
-	prefix string
+	token     string
+	prefix    string
+	startTime time.Time
 )
 
 // Init function
 func init() {
+	// Grab the time on startup
+	startTime = time.Now()
+
 	// Welcome message
 	fmt.Println("NaviBot: Discord bot for digital assistance")
 
@@ -41,15 +45,18 @@ func init() {
 
 // Main function
 func main() {
+	// Output the values from nenv
+	fmt.Printf("\n\tTOKEN=%T\n\tPREFIX=\"%v\"\n", token, prefix)
+
+	// Output the startTime to console
+	fmt.Printf("\n\tstart time: %v\n", startTime)
+
 	// Create a Discord session
 	dg, err := discordgo.New("Bot " + token)
 	if err != nil {
 		fmt.Println("error creating Discord session,", err)
 		return
 	}
-
-	// Do something in messageCreate when a message is created
-	dg.AddHandler(messageCreate)
 
 	// Open the Discord session
 	err = dg.Open()
@@ -58,13 +65,13 @@ func main() {
 		return
 	}
 
-	// Output the values from nenv
-	fmt.Printf("\n\tTOKEN=%T\n\tPREFIX=\"%v\"\n", token, prefix)
+	// Do something in messageCreate when a message is created
+	dg.AddHandler(messageCreate)
 
 	// Run until a signal to terminate is received
-	fmt.Println("\nNavibot ready and running :3")
+	fmt.Println("\nNaviBot running and ready :3")
 	sc := make(chan os.Signal, 1)
-	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
+	signal.Notify(sc, os.Interrupt, os.Kill)
 	<-sc
 
 	// Close the Discord session
@@ -87,6 +94,11 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		// If the message is "pong" reply with "pingo"
 		if m.Content == prefix+"pong" {
 			s.ChannelMessageSend(m.ChannelID, "pingo")
+		}
+		// If the message is "uptime" reply with the uptime in string format
+		if m.Content == prefix+"uptime" {
+			uptime := time.Since(startTime)
+			s.ChannelMessageSend(m.ChannelID, uptime.String())
 		}
 	}
 }
