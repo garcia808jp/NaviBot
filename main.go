@@ -85,27 +85,31 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-    // Respond to messages containing the prefix
-	if strings.HasPrefix(m.Content, prefix) {
-		// Parse the message as an array
-		msgArray := strings.Fields(m.Content)
+	// Parse the message as an array
+	msgArray := strings.Fields(m.Content)
 
-		// If the message is "ping" reply with "pongo"
-		if msgArray[1] == "ping" {
-			s.ChannelMessageSend(m.ChannelID, "pongo")
-		}
-		// If the message is "pong" reply with "pingo"
-		if msgArray[1] == "pong" {
-			s.ChannelMessageSend(m.ChannelID, "pingo")
-		}
+	// Respond to messages containing the prefix
+	if strings.HasPrefix(m.Content, prefix) {
+		// Check the  built-in commands against
+		switch msgArray[1] {
+		// If the message is "ping" reply with "pong"
+		case "ping":
+			s.ChannelMessageSend(m.ChannelID, "pong")
+		// If the message is "pong" reply with "ping"
+		case "pong":
+			s.ChannelMessageSend(m.ChannelID, "ping")
 		// If the message is "uptime" reply with the uptime in string format
-		if msgArray[1] == "uptime" {
+		case "uptime":
+			// Calculate the time since startup to the command received
 			uptime := time.Since(startTime)
+			// Reply with a string
 			s.ChannelMessageSend(m.ChannelID, uptime.String())
-		}
-		// If the message is "pong" reply with "pingo"
-		if msgArray[1] == "man" {
-			s.ChannelMessageSend(m.ChannelID, "man is not implemented yet")
+		// Query the requested man page from online
+		case "man":
+			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
+		// Notify the user if the command is not recognised
+		default:
+			s.ChannelMessageSend(m.ChannelID, "command not recognized")
 		}
 	}
 }
