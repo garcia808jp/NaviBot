@@ -80,25 +80,32 @@ func main() {
 
 // Respond to messages
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
-	// Respond to messages containing the prefix
+	// Ignore all messages created by the bot itself
+	if m.Author.ID == s.State.User.ID {
+		return
+	}
+
+    // Respond to messages containing the prefix
 	if strings.HasPrefix(m.Content, prefix) {
-		// Ignore all messages created by the bot itself
-		if m.Author.ID == s.State.User.ID {
-			return
-		}
+		// Parse the message as an array
+		msgArray := strings.Fields(m.Content)
 
 		// If the message is "ping" reply with "pongo"
-		if m.Content == prefix+"ping" {
+		if msgArray[1] == "ping" {
 			s.ChannelMessageSend(m.ChannelID, "pongo")
 		}
 		// If the message is "pong" reply with "pingo"
-		if m.Content == prefix+"pong" {
+		if msgArray[1] == "pong" {
 			s.ChannelMessageSend(m.ChannelID, "pingo")
 		}
 		// If the message is "uptime" reply with the uptime in string format
-		if m.Content == prefix+"uptime" {
+		if msgArray[1] == "uptime" {
 			uptime := time.Since(startTime)
 			s.ChannelMessageSend(m.ChannelID, uptime.String())
+		}
+		// If the message is "pong" reply with "pingo"
+		if msgArray[1] == "man" {
+			s.ChannelMessageSend(m.ChannelID, "man is not implemented yet")
 		}
 	}
 }
