@@ -17,10 +17,12 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// Initialize some global variables
 var (
-	token     string
-	prefix    string
-	startTime time.Time
+	token           string
+	prefix          string
+	startTime       time.Time
+	greetingMessage string = "NaviBot: Discord bot for digital assistance"
 )
 
 // Init function
@@ -29,7 +31,7 @@ func init() {
 	startTime = time.Now()
 
 	// Welcome message
-	fmt.Println("NaviBot: Discord bot for digital assistance")
+	fmt.Println(greetingMessage)
 
 	// Load the .nenv file
 	err := godotenv.Load(".nenv")
@@ -38,7 +40,7 @@ func init() {
 		return
 	}
 
-	// Load environment variables from the .nenv file
+	// Load environment variables into the respective global variables
 	token = os.Getenv("TOKEN")
 	prefix = os.Getenv("PREFIX")
 }
@@ -64,6 +66,8 @@ func main() {
 		fmt.Println("error opening connection,", err)
 		return
 	}
+	// Close the Discord session on exit
+	defer dg.Close()
 
 	// Do something in messageCreate when a message is created
 	dg.AddHandler(messageCreate)
@@ -73,9 +77,6 @@ func main() {
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, os.Interrupt, os.Kill)
 	<-sc
-
-	// Close the Discord session
-	dg.Close()
 }
 
 // Respond to messages
@@ -85,12 +86,21 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-	// Parse the message as an array
+	// Parse the message as a string array
+	// the first entry in the array ( msgArray[0] ) should be the prefix
+	// the second should be  the command and the rest should be parameters
 	msgArray := strings.Fields(m.Content)
 
 	// Respond to messages containing the prefix
 	if strings.HasPrefix(m.Content, prefix) {
-		// Check the  built-in commands against
+		// Make sure there is a second entry in the array
+		// ie is there a command in the message
+		if len(msgArray) == 1 {
+			s.ChannelMessageSend(m.ChannelID, greetingMessage)
+			return
+		}
+
+		// Check the user input against the  built-in commands
 		switch msgArray[1] {
 		// If the message is "ping" reply with "pong"
 		case "ping":
@@ -100,12 +110,17 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			s.ChannelMessageSend(m.ChannelID, "ping")
 		// If the message is "uptime" reply with the uptime in string format
 		case "uptime":
-			// Calculate the time since startup to the command received
 			uptime := time.Since(startTime)
-			// Reply with a string
 			s.ChannelMessageSend(m.ChannelID, uptime.String())
 		// Query the requested man page from online
 		case "man":
+			if len(msgArray) >= 3 {
+				s.ChannelMessageSend(m.ChannelID, "why are you passing parameters\nthis command is not implemented yet")
+				return
+			}
+			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
+		// Search for requested images
+		case "la":
 			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
 		// Notify the user if the command is not recognised
 		default:
