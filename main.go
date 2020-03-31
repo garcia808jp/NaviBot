@@ -19,10 +19,10 @@ import (
 
 // Initialize some global variables
 var (
-	token           string
-	prefix          string
-	startTime       time.Time
-	greetingMessage string = "NaviBot: Discord bot for digital assistance"
+	token       string
+	prefix      string
+	startTime   time.Time
+	greetingMsg string = "NaviBot: Discord bot for digital assistance"
 )
 
 // Init function
@@ -31,7 +31,7 @@ func init() {
 	startTime = time.Now()
 
 	// Welcome message
-	fmt.Println(greetingMessage)
+	fmt.Println(greetingMsg)
 
 	// Load the .nenv file
 	err := godotenv.Load(".nenv")
@@ -47,7 +47,7 @@ func init() {
 
 // Main function
 func main() {
-	// Output the values from nenv
+	// Output the data type of 'token' and the value of 'prefix' from nenv
 	fmt.Printf("\n\tTOKEN=%T\n\tPREFIX=\"%v\"\n", token, prefix)
 
 	// Output the startTime to console
@@ -73,6 +73,7 @@ func main() {
 	dg.AddHandler(messageCreate)
 
 	// Run until a signal to terminate is received
+	// this portion is a mystery to me :c
 	fmt.Println("\nNaviBot running and ready :3")
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, os.Interrupt, os.Kill)
@@ -87,7 +88,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	// Parse the message as a string array
-	// the first entry in the array ( msgArray[0] ) should be the prefix
+	// the first entry in the array, msgArray[0], should be the prefix
 	// the second should be  the command and the rest should be parameters
 	msgArray := strings.Fields(m.Content)
 
@@ -96,7 +97,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		// Make sure there is a second entry in the array
 		// ie is there a command in the message
 		if len(msgArray) == 1 {
-			s.ChannelMessageSend(m.ChannelID, greetingMessage)
+			s.ChannelMessageSend(m.ChannelID, greetingMsg)
 			return
 		}
 
@@ -114,12 +115,15 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			s.ChannelMessageSend(m.ChannelID, uptime.String())
 		// Query the requested man page from online
 		case "man":
+			// this code is here until I am satisfied enough to put it into is own function
+			archMan := "https://jlk.fjfi.cvut.cz/arch/manpages/search?q="
 			if len(msgArray) >= 3 {
 				s.ChannelMessageSend(m.ChannelID, "why are you passing parameters\nthis command is not implemented yet")
+				s.ChannelMessageSend(m.ChannelID, archMan)
 				return
 			}
 			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
-		// Search for requested images
+		// Search for requested images from *booru
 		case "la":
 			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
 		// Notify the user if the command is not recognised
