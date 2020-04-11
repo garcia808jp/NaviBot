@@ -15,6 +15,10 @@ import (
 	// Third-party packages
 	"github.com/bwmarrin/discordgo"
 	"github.com/joho/godotenv"
+
+	// In-house packages
+	"github.com/phossil/NaviBot/lain"
+	//"github.com/phossil/NaviBot/commands"
 )
 
 // Initialize some global variables
@@ -47,7 +51,7 @@ func init() {
 
 // Main function
 func main() {
-	// Output the data type of 'token' and the value of 'prefix' from nenv
+	// Output the data type of 'token' and the value of 'prefix'
 	fmt.Printf("\n\tTOKEN=%T\n\tPREFIX=\"%v\"\n", token, prefix)
 
 	// Output the startTime to console
@@ -116,19 +120,28 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		// Query the requested man page from online
 		case "man":
 			// this code is here until I am satisfied enough to put it into is own function
-			archMan := "https://jlk.fjfi.cvut.cz/arch/manpages/search?q="
 			if len(msgArray) >= 3 {
-				s.ChannelMessageSend(m.ChannelID, "why are you passing parameters\nthis command is not implemented yet")
-				s.ChannelMessageSend(m.ChannelID, archMan)
-				return
+				s.ChannelMessageSend(m.ChannelID, manComm(msgArray))
 			}
 			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
 		// Search for requested images from *booru
-		case "la":
+		case "le":
 			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
+		case "lainh":
+			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
+			s.ChannelMessageSend(m.ChannelID, lain.Hug[5])
 		// Notify the user if the command is not recognised
 		default:
 			s.ChannelMessageSend(m.ChannelID, "command not recognized")
 		}
 	}
+}
+
+// Man command
+func manComm(msgArray []string) string {
+	// The default URL for the online man pages
+	manSrc := "https://jlk.fjfi.cvut.cz/arch/manpages/search?q="
+	// Concatenate the URL with the requested man page
+	manQuery := manSrc + msgArray[2]
+	return manQuery
 }
