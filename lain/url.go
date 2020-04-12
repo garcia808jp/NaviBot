@@ -3,25 +3,6 @@
 // sorry for the ugly mass of slices ._.
 package lain
 
-var Pat = []string{
-	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR_B2M0Yc9qyqXjKrqLRAJngXEpM1XUxb9lYeOr9eJdndts0tB",
-	"https://i.gifer.com/7MPC.gif",
-	"https://i.imgur.com/0znUWqT.gif",
-	"https://i.imgur.com/2k0MFIr.gif",
-	"https://i.imgur.com/2lacG7l.gif",
-	"https://i.imgur.com/4ssddEQ.gif",
-	"https://i.imgur.com/F3cjr3n.gif",
-	"https://i.imgur.com/LUypjw3.gif",
-	"https://i.imgur.com/TPqMPka.gif",
-	"https://i.imgur.com/UWbKpx8.gif",
-	"https://i.imgur.com/fp9XJZO.gif",
-	"https://i.imgur.com/sLwoifL.gif",
-	"https://media.tenor.com/images/098689061fc2b850aa29fd4410fa97e7/tenor.gif",
-	"https://media.tenor.com/images/e549c61c9bc3d8defdb0559b358b92a7/tenor.gif",
-	"https://media0.giphy.com/media/BxdqaKAfdcCsg/giphy.gif",
-	"https://thumbs.gfycat.com/ImpurePleasantArthropods-small.gif",
-}
-
 var Hug = []string{
 	"http://i.imgur.com/I8LyQ9L.gif",
 	"http://i.imgur.com/tuH4gqZ.gif",
@@ -52,6 +33,64 @@ var Hug = []string{
 	"https://media1.tenor.com/images/fdefc2134e17de3bb15bc398ff66c6ca/tenor.gif?itemid=9469917",
 	"https://thumbs.gfycat.com/BlindOblongAmurratsnake-small.gif",
 	"https://uploads.disquscdn.com/images/f5ee0928f31e1d867c85a1965005c54b3446595d2ff31989dc06a213679cc272.gif",
+}
+
+var Pat = []string{
+	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR_B2M0Yc9qyqXjKrqLRAJngXEpM1XUxb9lYeOr9eJdndts0tB",
+	"https://i.gifer.com/7MPC.gif",
+	"https://i.imgur.com/0znUWqT.gif",
+	"https://i.imgur.com/2k0MFIr.gif",
+	"https://i.imgur.com/2lacG7l.gif",
+	"https://i.imgur.com/4ssddEQ.gif",
+	"https://i.imgur.com/F3cjr3n.gif",
+	"https://i.imgur.com/LUypjw3.gif",
+	"https://i.imgur.com/TPqMPka.gif",
+	"https://i.imgur.com/UWbKpx8.gif",
+	"https://i.imgur.com/fp9XJZO.gif",
+	"https://i.imgur.com/sLwoifL.gif",
+	"https://media.tenor.com/images/098689061fc2b850aa29fd4410fa97e7/tenor.gif",
+	"https://media.tenor.com/images/e549c61c9bc3d8defdb0559b358b92a7/tenor.gif",
+	"https://media0.giphy.com/media/BxdqaKAfdcCsg/giphy.gif",
+	"https://thumbs.gfycat.com/ImpurePleasantArthropods-small.gif",
+}
+
+var EightBall = []string{
+	"It is certain.",
+	"As I see it yes.",
+	"Ask again later.",
+	"Better not tell you now.",
+	"Cannot predict now.",
+	"Concentrate and ask again.",
+	"Don't count on it.",
+	"It is decidedly so.",
+	"Most likely.",
+	"My reply is no.",
+	"My sources say no.",
+	"Outlook good.",
+	"Outlook not so good.",
+	"Reply hazy try again.",
+	"Signs point to yes.",
+	"Very doubtful.",
+	"Without a doubt.",
+	"Yes - definitely.",
+	"Yes.",
+	"You may rely on it.",
+}
+
+var Sites = []string{  
+	"http://lain.angelic-trust.net/wired.html",
+	"http://navi.solutions/",
+	"http://sel.wikia.com/wiki/Serial_Experiments_Lain_Wiki",
+	"http://www.cjas.org/~leng/lain.htm",
+	"http://www.geocities.jp/zatugakubeya/lain/index.html",
+	"https://arisuchan.jp/",
+	"https://arisuchan.jp/cyb/res/1210.html",
+	"https://asphyxia.su/",
+	"https://blackwings.neocities.org/",
+	"https://fauux.neocities.org/",
+	"https://mebious.neocities.org/Layer/Wierd.html",
+	"https://systemspace.link/warning.php",
+	"https://systemspace.network/",
 }
 
 var Gif = []string{
@@ -103,22 +142,6 @@ var Gif = []string{
 	"https://steamusercontent-a.akamaihd.net/ugc/859477345548989008/23073CCB3B1FE199008FB2A2F1CC7A4328A3F958/",
 	"https://steamusercontent-a.akamaihd.net/ugc/882000754018213605/C5280F51D7FEF548A21B7FDE639F8E949E9052FF/",
 	"https://thumbs.gfycat.com/KindheartedIdleHoneycreeper-max-1mb.gif",
-}
-
-var Sites = []string{
-	"http://lain.angelic-trust.net/wired.html",
-	"http://navi.solutions/",
-	"http://sel.wikia.com/wiki/Serial_Experiments_Lain_Wiki",
-	"http://www.cjas.org/~leng/lain.htm",
-	"http://www.geocities.jp/zatugakubeya/lain/index.html",
-	"https://arisuchan.jp/",
-	"https://arisuchan.jp/cyb/res/1210.html",
-	"https://asphyxia.su/",
-	"https://blackwings.neocities.org/",
-	"https://fauux.neocities.org/",
-	"https://mebious.neocities.org/Layer/Wierd.html",
-	"https://systemspace.link/warning.php",
-	"https://systemspace.network/",
 }
 
 var Images = []string{
@@ -368,27 +391,4 @@ var Images = []string{
 	"https://www.vizzed.com/videogames/psx/screenshot/Serial%20Experiments%20Lain-2.jpg",
 	"https://www.wallpaperup.com/uploads/wallpapers/2014/03/15/298989/bf83071e887017b092582842dc759663-700.jpg",
 	"https://zerojustice315.files.wordpress.com/2015/04/coalgirls_serial_experiments_lain_03_1008x720_blu-ray_flac_92704257-mkv_snapshot_16-51_2015-04-06_20-05-28.jpg",
-}
-
-var EightBall = []string{
-	"It is certain.",
-	"As I see it yes.",
-	"Ask again later.",
-	"Better not tell you now.",
-	"Cannot predict now.",
-	"Concentrate and ask again.",
-	"Don't count on it.",
-	"It is decidedly so.",
-	"Most likely.",
-	"My reply is no.",
-	"My sources say no.",
-	"Outlook good.",
-	"Outlook not so good.",
-	"Reply hazy try again.",
-	"Signs point to yes.",
-	"Very doubtful.",
-	"Without a doubt.",
-	"Yes - definitely.",
-	"Yes.",
-	"You may rely on it.",
 }
