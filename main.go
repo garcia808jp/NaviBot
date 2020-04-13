@@ -7,7 +7,6 @@ package main
 import (
 	// Standard packages
 	"fmt"
-	"math/rand"
 	"os"
 	"os/signal"
 	"strings"
@@ -19,7 +18,7 @@ import (
 
 	// In-house packages
 	"github.com/phossil/NaviBot/lain"
-	//"github.com/phossil/NaviBot/commands"
+	"github.com/phossil/NaviBot/commands"
 )
 
 // Initialize some global variables
@@ -120,97 +119,32 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			s.ChannelMessageSend(m.ChannelID, uptime.String())
 		// Query the requested man page from online
 		case "man":
-			s.ChannelMessageSend(m.ChannelID, manComm(msgArray))
+			s.ChannelMessageSend(m.ChannelID, commands.Man(msgArray))
 		// Search for requested images from *booru
 		case "le":
 			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
 
 		// Return a wholesome image if the user wants a hug
 		case "lainh":
-			s.ChannelMessageSend(m.ChannelID, lainhComm())
+			s.ChannelMessageSend(m.ChannelID, lain.Hug())
 		// Return a wholesome image if the user wants a pat
 		case "lainp":
-			s.ChannelMessageSend(m.ChannelID, lainpComm())
-			// Return a random fortune
+			s.ChannelMessageSend(m.ChannelID, lain.Pat())
+		// Return a random fortune
 		case "lain8":
-			s.ChannelMessageSend(m.ChannelID, lain8Comm(msgArray))
+			s.ChannelMessageSend(m.ChannelID, lain.EightBall(msgArray))
+		// Return a random wired site
+		case "lains":
+			s.ChannelMessageSend(m.ChannelID, lain.Site())
+		// Return a random gif
+		case "laing":
+			s.ChannelMessageSend(m.ChannelID, lain.Gif())
+		// Return a random image
+		case "laini":
+			s.ChannelMessageSend(m.ChannelID, lain.Image())
 		// Notify the user if the command is not recognised
 		default:
 			s.ChannelMessageSend(m.ChannelID, "command not recognized")
 		}
 	}
-}
-
-// Man command
-// the command returns a string containing the requested man page from the message array
-func manComm(msgArray []string) (msgOut string) {
-	// If the message contains arguments, complete the task; notify the user otherwise
-	if len(msgArray) >= 3 {
-		// The default URL for the online man pages
-		manSrc := "https://jlk.fjfi.cvut.cz/arch/manpages/search?q="
-		// Concatenate the URL with the requested man page
-		msgOut = manSrc + msgArray[2]
-	} else {
-		msgOut = "command not implemented yet"
-	}
-	return msgOut
-}
-
-// LainBot commands
-// sorri for the ugly code ._.
-// it's here until i can makde it better
-
-// Lain hug command
-// the command returns a string containing a random URL in the lain.Hug slice
-func lainhComm() (msgOut string) {
-	// Seed the rand package using current time in Unix format
-	rand.Seed(time.Now().UnixNano())
-	// Choose a rondom integer using the length of the lain.Hug slice
-	randEntry := rand.Intn(len(lain.Hug))
-	// Prevent an error if the integer is out of bounds
-	if randEntry == len(lain.Hug) {
-		randEntry = randEntry - 1
-	}
-
-	// Create a string using a random entry in the lain.Hug slice
-	msgOut = "much yay, very hug !!!\n" + lain.Hug[randEntry]
-	return msgOut
-}
-
-// Lain pat command
-// the command returns a string containing a random URL in the lain.Pat slice
-func lainpComm() (msgOut string) {
-	// Seed the rand package using current time in Unix format
-	rand.Seed(time.Now().UnixNano())
-	// Choose a rondom integer using the length of the lain.Pat slice
-	randEntry := rand.Intn(len(lain.Pat))
-	// Prevent an error if the integer is out of bounds
-	if randEntry == len(lain.Pat) {
-		randEntry = randEntry - 1
-	}
-
-	// Create a string using a random entry in the lain.Pat slice
-	msgOut = "much yay, very uwu !!!\n" + lain.Pat[randEntry]
-	return msgOut
-}
-
-// Lain 8-ball command
-// the command returns a string from the lain.EightBall slice
-func lain8Comm(msgArray []string) (msgOut string) {
-	// If there are no arguments notify the user
-	if len(msgArray) == 2 {
-		return "can't tell ur fortune without a queston -_-"
-	}
-	// Seed the rand package using current time in Unix format
-	rand.Seed(time.Now().UnixNano())
-	// Choose a rondom integer using the length of the lain.EightBall slice
-	randEntry := rand.Intn(len(lain.EightBall))
-	// Prevent an error if the integer is out of bounds
-	if randEntry == len(lain.EightBall) {
-		randEntry = randEntry - 1
-	}
-
-	// Create a string using a random entry in the lain.EightBall slice
-	msgOut = ":8ball: Lain has a message from beyond~~\n" + lain.EightBall[randEntry]
-	return msgOut
 }
