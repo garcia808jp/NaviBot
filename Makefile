@@ -1,17 +1,17 @@
 .DEFAULT_GOAL: NaviBot
-.PHONY: prep get tidy update run test clean
+.PHONY: rpi prep verify update run test rm
 
-NaviBot:
-	go build -o NaviBot main.go
+NaviBot: prep
+	go build -o build/NaviBot main.go
 
-prep: get tidy
+rpi:
+	GOOS="linux" GOARCH="arm" GOARM="6" go build -o build/NaviBot-RPi main.go
 
-get:
-	go get "github.com/joho/godotenv"; \
-	go get "github.com/bwmarrin/discordgo"
+prep: verify
+	mkdir -p build
 
-tidy:
-	go mod tidy
+verify:
+	go mod verify
 
 update:
 	go get -u
@@ -20,7 +20,7 @@ run:
 	go run main.go
 
 test: NaviBot
-	./NaviBot
+	./build/NaviBot
 
-clean:
-	rm NaviBot
+rm:
+	rm -r build/*

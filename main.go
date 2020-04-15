@@ -25,6 +25,7 @@ import (
 var (
 	token       string
 	prefix      string
+	lainPrefix  string
 	startTime   time.Time
 	greetingMsg string = "NaviBot: Discord bot for digital assistance"
 )
@@ -47,6 +48,8 @@ func init() {
 	// Load environment variables into the respective global variables
 	token = os.Getenv("TOKEN")
 	prefix = os.Getenv("PREFIX")
+    lainPrefix = os.Getenv("LAIN_PREFIX")
+    
 }
 
 // Main function
@@ -73,8 +76,9 @@ func main() {
 	// Close the Discord session on exit
 	defer dg.Close()
 
-	// Do something in messageCreate when a message is created
-	dg.AddHandler(messageCreate)
+	// Do something in mainHandler  when a message is created
+	dg.AddHandler(mainHandler)
+    dg.AddHandler(lainHandler)
 
 	// Run until a signal to terminate is received
 	// this portion is a mystery to me :c
@@ -85,7 +89,7 @@ func main() {
 }
 
 // Respond to messages
-func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
+func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	// Ignore all messages created by the bot itself
 	if m.Author.ID == s.State.User.ID {
 		return
@@ -97,7 +101,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	msgArray := strings.Fields(m.Content)
 
 	// Respond to messages containing the prefix
-	if strings.HasPrefix(m.Content, prefix) {
+	if msgArray[0] == prefix {
 		// Make sure there is a second entry in the array
 		// ie is there a command in the message
 		if len(msgArray) == 1 {
@@ -123,24 +127,53 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		// Search for requested images from *booru
 		case "le":
 			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
+		// Notify the user if the command is not recognised
+		default:
+			s.ChannelMessageSend(m.ChannelID, "command not recognized")
+		}
+	}
+}
 
+// Respond to messages
+func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
+	// Ignore all messages created by the bot itself
+	if m.Author.ID == s.State.User.ID {
+		return
+	}
+
+	// Parse the message as a string array
+	// the first entry in the array, msgArray[0], should be the prefix
+	// the second should be  the command and the rest should be arguments
+	msgArray := strings.Fields(m.Content)
+
+	// Respond to messages containing the prefix
+	if msgArray[0] == lainPrefix {
+		// Make sure there is a second entry in the array
+		// ie is there a command in the message
+		if len(msgArray) == 1 {
+			s.ChannelMessageSend(m.ChannelID, greetingMsg)
+			return
+		}
+
+		// Check the user input against the  built-in commands
+		switch msgArray[1] {
 		// Return a wholesome image if the user wants a hug
-		case "lainh":
+		case "hug":
 			s.ChannelMessageSend(m.ChannelID, lain.Hug())
 		// Return a wholesome image if the user wants a pat
-		case "lainp":
+		case "pat":
 			s.ChannelMessageSend(m.ChannelID, lain.Pat())
 		// Return a random fortune
-		case "lain8":
+		case "8ball":
 			s.ChannelMessageSend(m.ChannelID, lain.EightBall(msgArray))
 		// Return a random wired site
-		case "lains":
+		case "site":
 			s.ChannelMessageSend(m.ChannelID, lain.Site())
 		// Return a random gif
-		case "laing":
+		case "gif":
 			s.ChannelMessageSend(m.ChannelID, lain.Gif())
 		// Return a random image
-		case "laini":
+		case "image":
 			s.ChannelMessageSend(m.ChannelID, lain.Image())
 		// Notify the user if the command is not recognised
 		default:
