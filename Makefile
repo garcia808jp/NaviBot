@@ -4,7 +4,7 @@
 NaviBot: prep
 	go build -o build/NaviBot main.go
 
-rpi:
+rpi: prep
 	GOOS="linux" GOARCH="arm" GOARM="6" go build -o build/NaviBot-RPi main.go
 
 prep: verify

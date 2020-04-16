@@ -17,8 +17,8 @@ import (
 	"github.com/joho/godotenv"
 
 	// In-house packages
-	"github.com/phossil/NaviBot/lain"
 	"github.com/phossil/NaviBot/commands"
+	"github.com/phossil/NaviBot/lain"
 )
 
 // Initialize some global variables
@@ -48,14 +48,13 @@ func init() {
 	// Load environment variables into the respective global variables
 	token = os.Getenv("TOKEN")
 	prefix = os.Getenv("PREFIX")
-    lainPrefix = os.Getenv("LAIN_PREFIX")
-    
+	lainPrefix = os.Getenv("LAIN_PREFIX")
 }
 
 // Main function
 func main() {
 	// Output the data type of 'token' and the value of 'prefix'
-	fmt.Printf("\n\tTOKEN=%T\n\tPREFIX=\"%v\"\n", token, prefix)
+	fmt.Printf("\n\tTOKEN=%T\n\tPREFIX=\"%v\"\n\tLAIN_PREFIX=\"%v\"\n", token, prefix, lainPrefix)
 
 	// Output the startTime to console
 	fmt.Printf("\n\tstart time: %v\n", startTime)
@@ -76,9 +75,10 @@ func main() {
 	// Close the Discord session on exit
 	defer dg.Close()
 
-	// Do something in mainHandler  when a message is created
+	// Handle messages with mainHandler
 	dg.AddHandler(mainHandler)
-    dg.AddHandler(lainHandler)
+	// Handle messages with lainHandler
+	dg.AddHandler(lainHandler)
 
 	// Run until a signal to terminate is received
 	// this portion is a mystery to me :c
@@ -96,9 +96,14 @@ func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	// Parse the message as a string array
-	// the first entry in the array, msgArray[0], should be the prefix
-	// the second should be  the command and the rest should be arguments
+	// msgArray[0] should be the prefix
+	// entries after that should be arguments
 	msgArray := strings.Fields(m.Content)
+	// Print time when an empty message is received
+	if msgArray == nil {
+		fmt.Printf("%v: empty message, %v\n", time.Now().String(), msgArray)
+		return
+	}
 
 	// Respond to messages containing the prefix
 	if msgArray[0] == prefix {
@@ -127,6 +132,10 @@ func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		// Search for requested images from *booru
 		case "le":
 			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
+
+		// Help command
+		case "help":
+			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
 		// Notify the user if the command is not recognised
 		default:
 			s.ChannelMessageSend(m.ChannelID, "command not recognized")
@@ -142,9 +151,14 @@ func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	// Parse the message as a string array
-	// the first entry in the array, msgArray[0], should be the prefix
-	// the second should be  the command and the rest should be arguments
+	// msgArray[0] should be the prefix
+	// entries after that should be arguments
 	msgArray := strings.Fields(m.Content)
+	// Print time when an empty message is received
+	if msgArray == nil {
+		fmt.Printf("%v: empty message, %v\n", time.Now().String(), msgArray)
+		return
+	}
 
 	// Respond to messages containing the prefix
 	if msgArray[0] == lainPrefix {
@@ -175,6 +189,9 @@ func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		// Return a random image
 		case "image":
 			s.ChannelMessageSend(m.ChannelID, lain.Image())
+		// Help the user
+		case "help":
+			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
 		// Notify the user if the command is not recognised
 		default:
 			s.ChannelMessageSend(m.ChannelID, "command not recognized")
