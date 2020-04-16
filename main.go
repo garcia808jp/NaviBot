@@ -90,8 +90,8 @@ func main() {
 
 // Respond to messages
 func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
-	// Ignore all messages created by the bot itself
-	if m.Author.ID == s.State.User.ID {
+	// Ignore all messages created by the bot itself or are empty
+	if m.Author.ID == s.State.User.ID || m.Content == "" {
 		return
 	}
 
@@ -99,11 +99,6 @@ func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	// msgArray[0] should be the prefix
 	// entries after that should be arguments
 	msgArray := strings.Fields(m.Content)
-	// Print time when an empty message is received
-	if msgArray == nil {
-		fmt.Printf("%v: empty message, %v\n", time.Now().String(), msgArray)
-		return
-	}
 
 	// Respond to messages containing the prefix
 	if msgArray[0] == prefix {
@@ -145,8 +140,8 @@ func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 // Respond to messages
 func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
-	// Ignore all messages created by the bot itself
-	if m.Author.ID == s.State.User.ID {
+	// Ignore all messages created by the bot itself or are empty
+	if m.Author.ID == s.State.User.ID || m.Content == "" {
 		return
 	}
 
@@ -154,11 +149,6 @@ func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	// msgArray[0] should be the prefix
 	// entries after that should be arguments
 	msgArray := strings.Fields(m.Content)
-	// Print time when an empty message is received
-	if msgArray == nil {
-		fmt.Printf("%v: empty message, %v\n", time.Now().String(), msgArray)
-		return
-	}
 
 	// Respond to messages containing the prefix
 	if msgArray[0] == lainPrefix {
