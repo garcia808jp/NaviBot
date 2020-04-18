@@ -1,7 +1,6 @@
 // NaviBot: Discord bot for digital assistance
 // LainBot's responses
 
-// sorry for the ugly mass of slices ._.
 package lain
 
 var eightBallSlice = []string{
