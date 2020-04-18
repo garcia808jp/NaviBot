@@ -4,6 +4,20 @@
 // Defines this source file as part of the main package
 package main
 
+// Import depency packages
+import (
+    // Standard
+    "strings"
+    "time"
+
+    // Third-party
+	"github.com/bwmarrin/discordgo"
+    
+	// In-house
+	"github.com/phossil/NaviBot/commands"
+	"github.com/phossil/NaviBot/lain"
+)
+
 // Respond to messages
 func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	// Ignore all messages created by the bot itself or are empty

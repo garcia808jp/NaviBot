@@ -5,20 +5,15 @@ package main
 
 // Import depency packages
 import (
-	// Standard packages
+	// Standard
 	"fmt"
 	"os"
 	"os/signal"
-	"strings"
 	"time"
 
-	// Third-party packages
+	// Third-party
 	"github.com/bwmarrin/discordgo"
 	"github.com/joho/godotenv"
-
-	// In-house packages
-	"github.com/phossil/NaviBot/commands"
-	"github.com/phossil/NaviBot/lain"
 )
 
 // Initialize some global variables
