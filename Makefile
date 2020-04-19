@@ -2,10 +2,10 @@
 .PHONY: rpi prep verify update run test rm
 
 NaviBot: prep
-	go build -o build/NaviBot main.go
+	go build -o build/NaviBot *.go
 
 rpi: prep
-	GOOS="linux" GOARCH="arm" GOARM="6" go build -o build/NaviBot-RPi main.go
+	GOOS="linux" GOARCH="arm" GOARM="6" go build -o build/NaviBot-RPi *.go
 
 prep: verify
 	mkdir -p build
@@ -17,7 +17,7 @@ update:
 	go get -u
 
 run:
-	go run main.go
+	go run *.go
 
 test: NaviBot
 	./build/NaviBot
