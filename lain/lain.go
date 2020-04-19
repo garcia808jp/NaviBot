@@ -118,3 +118,20 @@ func Image() (msgOut string) {
 	msgOut = "owo\n" + imageSlice[randEntry]
 	return
 }
+
+// Lain peen command
+// the command returns a string containing a random URL in peenSlice
+func Peen() (msgOut string) {
+	// Seed the rand package using current time in Unix format
+	rand.Seed(time.Now().UnixNano())
+	// Choose a rondom integer using the length of peenSlice
+	randEntry := rand.Intn(len(peenSlice))
+	// Prevent an error if the integer is out of bounds
+	if randEntry == len(peenSlice) {
+		randEntry = randEntry - 1
+	}
+
+	// Create a string using a random entry in peenSlice
+	msgOut = peenSlice[randEntry]
+	return
+}

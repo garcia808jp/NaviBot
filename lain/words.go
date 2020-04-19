@@ -24,4 +24,9 @@ var eightBallSlice = []string{
 	"Yes - definitely.",
 	"Yes.",
 	"You may rely on it.",
-} 
+}
+
+var peenSlice = []string{
+	"hi <@98773013649977344>",
+	"<@219936359236894731> gay",
+}

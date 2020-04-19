@@ -49,8 +49,7 @@ func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 			s.ChannelMessageSend(m.ChannelID, "ping")
 		// If the message is "uptime" reply with the uptime in string format
 		case "uptime":
-			uptime := time.Since(startTime)
-			s.ChannelMessageSend(m.ChannelID, uptime.String())
+			s.ChannelMessageSend(m.ChannelID, time.Since(startTime).String())
 		// Query the requested man page from online
 		case "man":
 			s.ChannelMessageSend(m.ChannelID, commands.Man(msgArray))
@@ -118,6 +117,9 @@ func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		// Link to the git repo
 		case "code":
 			s.ChannelMessageSend(m.ChannelID, codeURL)
+		// Ping a pour soul
+		case "penis":
+			s.ChannelMessageSend(m.ChannelID, lain.Peen())
 		// Notify the user if the command is not recognised
 		default:
 			s.ChannelMessageSend(m.ChannelID, "command not recognized")
