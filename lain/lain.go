@@ -27,7 +27,7 @@ func Hug() (msgOut string) {
 
 	// Create a string using a random entry in hugSlice
 	msgOut = "much yay, very hug !!!\n" + hugSlice[randEntry]
-	return msgOut
+	return
 }
 
 // Lain pat command
@@ -44,7 +44,7 @@ func Pat() (msgOut string) {
 
 	// Create a string using a random entry in patSlice
 	msgOut = "much yay, very uwu !!!\n" + patSlice[randEntry]
-	return msgOut
+	return
 }
 
 // Lain 8-ball command
@@ -65,7 +65,7 @@ func EightBall(msgArray []string) (msgOut string) {
 
 	// Create a string using a random entry in the eightBallSlice
 	msgOut = ":8ball: Lain has a message from beyond~~\n" + eightBallSlice[randEntry]
-	return msgOut
+	return
 }
 
 // Lain sites command
@@ -82,7 +82,7 @@ func Site() (msgOut string) {
 
 	// Create a string using a random entry in siteSlice
 	msgOut = "become one with the wired, faithful follower\n" + siteSlice[randEntry]
-	return msgOut
+	return
 }
 
 // Lain gif command
@@ -99,7 +99,7 @@ func Gif() (msgOut string) {
 
 	// Create a string using a random entry in gifSlice
 	msgOut = "mlem\n" + gifSlice[randEntry]
-	return msgOut
+	return
 }
 
 // Lain images command
@@ -116,5 +116,5 @@ func Image() (msgOut string) {
 
 	// Create a string using a random entry in imageSlice
 	msgOut = "owo\n" + imageSlice[randEntry]
-	return msgOut
+	return
 }

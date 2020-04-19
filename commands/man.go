@@ -16,5 +16,5 @@ func Man(msgArray []string) (msgOut string) {
 	} else {
 		msgOut = "command not implemented yet"
 	}
-	return msgOut
+	return
 }

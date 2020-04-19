@@ -6,13 +6,13 @@ package main
 
 // Import depency packages
 import (
-    // Standard
-    "strings"
-    "time"
+	// Standard
+	"strings"
+	"time"
 
-    // Third-party
+	// Third-party
 	"github.com/bwmarrin/discordgo"
-    
+
 	// In-house
 	"github.com/phossil/NaviBot/commands"
 	"github.com/phossil/NaviBot/lain"
