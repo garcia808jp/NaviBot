@@ -1,26 +1,29 @@
 // NaviBot: Discord bot for digital assistance
 
-// Defines this source file as the main one
+// Defines this source file as part of the main package
 package main
 
 // Import depency packages
 import (
-	// Standard packages
+	// Standard
 	"fmt"
 	"os"
 	"os/signal"
-	"strings"
 	"time"
 
-	// Third-party packages
+	// Third-party
 	"github.com/bwmarrin/discordgo"
 	"github.com/joho/godotenv"
 )
 
+// Initialize some global variables
 var (
-	token     string
-	prefix    string
-	startTime time.Time
+	token       string
+	prefix      string
+	lainPrefix  string
+	startTime   time.Time
+	codeURL     string = "https://github.com/phossil/NaviBot/"
+	greetingMsg string = "NaviBot: Discord bot for digital assistance"
 )
 
 // Init function
@@ -29,7 +32,7 @@ func init() {
 	startTime = time.Now()
 
 	// Welcome message
-	fmt.Println("NaviBot: Discord bot for digital assistance")
+	fmt.Println(greetingMsg)
 
 	// Load the .nenv file
 	err := godotenv.Load(".nenv")
@@ -38,15 +41,16 @@ func init() {
 		return
 	}
 
-	// Load environment variables from the .nenv file
+	// Load environment variables into the respective global variables
 	token = os.Getenv("TOKEN")
 	prefix = os.Getenv("PREFIX")
+	lainPrefix = os.Getenv("LAIN_PREFIX")
 }
 
 // Main function
 func main() {
-	// Output the values from nenv
-	fmt.Printf("\n\tTOKEN=%T\n\tPREFIX=\"%v\"\n", token, prefix)
+	// Output the data type of 'token' and the value of 'prefix'
+	fmt.Printf("\n\tTOKEN=%T\n\tPREFIX=\"%v\"\n\tLAIN_PREFIX=\"%v\"\n", token, prefix, lainPrefix)
 
 	// Output the startTime to console
 	fmt.Printf("\n\tstart time: %v\n", startTime)
@@ -64,41 +68,18 @@ func main() {
 		fmt.Println("error opening connection,", err)
 		return
 	}
+	// Close the Discord session on exit
+	defer dg.Close()
 
-	// Do something in messageCreate when a message is created
-	dg.AddHandler(messageCreate)
+	// Handle messages with mainHandler
+	dg.AddHandler(mainHandler)
+	// Handle messages with lainHandler
+	dg.AddHandler(lainHandler)
 
 	// Run until a signal to terminate is received
+	// this portion is a mystery to me :c
 	fmt.Println("\nNaviBot running and ready :3")
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, os.Interrupt, os.Kill)
 	<-sc
-
-	// Close the Discord session
-	dg.Close()
-}
-
-// Respond to messages
-func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
-	// Respond to messages containing the prefix
-	if strings.HasPrefix(m.Content, prefix) {
-		// Ignore all messages created by the bot itself
-		if m.Author.ID == s.State.User.ID {
-			return
-		}
-
-		// If the message is "ping" reply with "pongo"
-		if m.Content == prefix+"ping" {
-			s.ChannelMessageSend(m.ChannelID, "pongo")
-		}
-		// If the message is "pong" reply with "pingo"
-		if m.Content == prefix+"pong" {
-			s.ChannelMessageSend(m.ChannelID, "pingo")
-		}
-		// If the message is "uptime" reply with the uptime in string format
-		if m.Content == prefix+"uptime" {
-			uptime := time.Since(startTime)
-			s.ChannelMessageSend(m.ChannelID, uptime.String())
-		}
-	}
 }
