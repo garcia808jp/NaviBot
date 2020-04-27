@@ -7,6 +7,7 @@ package main
 import (
 	// Standard
 	"fmt"
+	"log"
 	"os"
 	"os/signal"
 	"time"
@@ -37,7 +38,7 @@ func init() {
 	// Load the .nenv file
 	err := godotenv.Load(".nenv")
 	if err != nil {
-		fmt.Println("error loading .nenv file,")
+		log.Print(err)
 		return
 	}
 
@@ -58,14 +59,14 @@ func main() {
 	// Create a Discord session
 	dg, err := discordgo.New("Bot " + token)
 	if err != nil {
-		fmt.Println("error creating Discord session,", err)
+		log.Print(err)
 		return
 	}
 
 	// Open the Discord session
 	err = dg.Open()
 	if err != nil {
-		fmt.Println("error opening connection,", err)
+		log.Print(err)
 		return
 	}
 	// Close the Discord session on exit
