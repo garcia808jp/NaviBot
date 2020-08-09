@@ -1,14 +1,17 @@
-.DEFAULT_GOAL: NaviBot
-.PHONY: rpi prep verify update run test rm
+.DEFAULT_GOAL: build
+.PHONY: rpi cirno prep verify update run test rm
 
-NaviBot: prep
-	go build -o build/NaviBot *.go
+build: prep
+	go build -o bin/NaviBot *.go
 
 rpi: prep
-	GOOS="linux" GOARCH="arm" GOARM="6" go build -o build/NaviBot-RPi *.go
+	GOOS="linux" GOARCH="arm" GOARM="6" go build -o bin/NaviBot-RPi *.go
+
+cirno: prep
+	GOOS="plan9" GOARCH="amd64" go build -o bin/NaviBot-9f *.go
 
 prep: verify
-	mkdir -p build
+	mkdir -p bin
 
 verify:
 	go mod verify
@@ -19,8 +22,8 @@ update:
 run:
 	go run *.go
 
-test: NaviBot
-	./build/NaviBot
+test: build
+	./bin/NaviBot
 
 rm:
-	rm -r build/*
+	rm -r bin/*

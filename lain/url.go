@@ -4,7 +4,7 @@
 // sorry for the ugly mass of slices ._.
 package lain
 
-var hugSlice = []string{
+var hugSlice = [...]string {
 	"http://i.imgur.com/I8LyQ9L.gif",
 	"http://i.imgur.com/tuH4gqZ.gif",
 	"https://37.media.tumblr.com/f2a878657add13aa09a5e089378ec43d/tumblr_n5uovjOi931tp7433o1_500.gif",
@@ -36,7 +36,7 @@ var hugSlice = []string{
 	"https://uploads.disquscdn.com/images/f5ee0928f31e1d867c85a1965005c54b3446595d2ff31989dc06a213679cc272.gif",
 }
 
-var patSlice = []string{
+var patSlice = [...]string {
 	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR_B2M0Yc9qyqXjKrqLRAJngXEpM1XUxb9lYeOr9eJdndts0tB",
 	"https://i.gifer.com/7MPC.gif",
 	"https://i.imgur.com/0znUWqT.gif",
@@ -55,7 +55,7 @@ var patSlice = []string{
 	"https://thumbs.gfycat.com/ImpurePleasantArthropods-small.gif",
 }
 
-var siteSlice = []string{  
+var siteSlice = [...]string {  
 	"http://lain.angelic-trust.net/wired.html",
 	"http://navi.solutions/",
 	"http://sel.wikia.com/wiki/Serial_Experiments_Lain_Wiki",
@@ -70,7 +70,7 @@ var siteSlice = []string{
 	"https://systemspace.network/",
 }
 
-var gifSlice = []string{
+var gifSlice = [...]string {
 	"http://25.media.tumblr.com/tumblr_m2hpn4XlZQ1r73plvo1_500.gif",
 	"http://33.media.tumblr.com/931f551c7c5cd9a0e6a0a558775d81f6/tumblr_mytlj0llZV1rzn9vfo1_250.gif",
 	"http://38.media.tumblr.com/931f551c7c5cd9a0e6a0a558775d81f6/tumblr_mytlj0llZV1rzn9vfo1_500.gif",
@@ -121,7 +121,7 @@ var gifSlice = []string{
 	"https://thumbs.gfycat.com/KindheartedIdleHoneycreeper-max-1mb.gif",
 }
 
-var imageSlice = []string{
+var imageSlice = [...]string {
 	"http://33.media.tumblr.com/f3307a1bb2de561902c3f4aa94819b90/tumblr_nttc6uSVuq1u4zgnro1_400.gif",
 	"http://41.media.tumblr.com/58ab8b9e534390ab996d0fa15ce0cede/tumblr_notf143Nit1qftmhbo1_500.png",
 	"http://animeonly.org/albums/VISINAUJI/Bishi/Volume-11-[S]/Serial_Experiment_Lain_14.jpg",

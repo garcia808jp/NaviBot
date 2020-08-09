@@ -17,12 +17,15 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// Initialize some global variables
+// Declare some global variables
 var (
 	token       string
 	prefix      string
 	lainPrefix  string
 	startTime   time.Time
+)
+// Initialize some global constants
+const (
 	codeURL     string = "https://github.com/phossil/NaviBot/"
 	greetingMsg string = "NaviBot: Discord bot for digital assistance"
 )
@@ -36,7 +39,7 @@ func init() {
 	fmt.Println(greetingMsg)
 
 	// Load the .nenv file
-	err := godotenv.Load(".nenv")
+	err := godotenv.Load("nenv")
 	if err != nil {
 		log.Print(err)
 		return
