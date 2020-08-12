@@ -3,7 +3,7 @@
 
 package lain
 
-var eightBallSlice = []string{
+var eightBallSlice = [...]string{
 	"It is certain.",
 	"As I see it yes.",
 	"Ask again later.",
@@ -26,7 +26,7 @@ var eightBallSlice = []string{
 	"You may rely on it.",
 }
 
-var peenSlice = []string{
+var peenSlice = [...]string{
 	"hi <@98773013649977344>",
 	"<@219936359236894731> gay",
 }

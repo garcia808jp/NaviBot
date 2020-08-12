@@ -1,7 +1,6 @@
 // NaviBot: Discord bot for digital assistance
 // LainBot commands
 
-// Defines this source file as part of the lain package 
 package lain
 
 import (
@@ -13,8 +12,8 @@ import (
 // sorri for the ugly code ._.
 // it's here until i can makde it better
 
-// Lain hug command
-// the command returns a string containing a random URL in hugSlice
+// Hug command
+// returns a string containing a random URL in hugSlice
 func Hug() (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
@@ -30,8 +29,8 @@ func Hug() (msgOut string) {
 	return
 }
 
-// Lain pat command
-// the command returns a string containing a random URL in patSlice
+// Pat command
+// returns a string containing a random URL in patSlice
 func Pat() (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
@@ -47,8 +46,8 @@ func Pat() (msgOut string) {
 	return
 }
 
-// Lain 8-ball command
-// the command returns a string from eightBallSlice
+// EightBall command
+// returns a string from eightBallSlice
 func EightBall(msgArray []string) (msgOut string) {
 	// If there are no arguments notify the user
 	if len(msgArray) == 2 {
@@ -68,8 +67,8 @@ func EightBall(msgArray []string) (msgOut string) {
 	return
 }
 
-// Lain sites command
-// the command returns a string containing a random URL in siteSlice
+// Site command
+// returns a string containing a random URL in siteSlice
 func Site() (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
@@ -85,8 +84,8 @@ func Site() (msgOut string) {
 	return
 }
 
-// Lain gif command
-// the command returns a string containing a random URL in gifSlice
+// Gif command
+// returns a string containing a random URL in gifSlice
 func Gif() (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
@@ -102,8 +101,8 @@ func Gif() (msgOut string) {
 	return
 }
 
-// Lain images command
-// the command returns a string containing a random URL in the imageSlice
+// Image command
+// returns a string containing a random URL in the imageSlice
 func Image() (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
@@ -119,8 +118,8 @@ func Image() (msgOut string) {
 	return
 }
 
-// Lain peen command
-// the command returns a string containing a random URL in peenSlice
+// Peen command
+// returns a string containing a random URL in peenSlice
 func Peen() (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())

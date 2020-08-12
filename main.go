@@ -7,6 +7,7 @@ package main
 import (
 	// Standard
 	"fmt"
+	"log"
 	"os"
 	"os/signal"
 	"time"
@@ -16,12 +17,16 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// Initialize some global variables
+// Declare some global variables
 var (
-	token       string
-	prefix      string
-	lainPrefix  string
-	startTime   time.Time
+	token      string
+	prefix     string
+	lainPrefix string
+	startTime  time.Time
+)
+
+// Initialize some global constants
+const (
 	codeURL     string = "https://github.com/phossil/NaviBot/"
 	greetingMsg string = "NaviBot: Discord bot for digital assistance"
 )
@@ -35,9 +40,9 @@ func init() {
 	fmt.Println(greetingMsg)
 
 	// Load the .nenv file
-	err := godotenv.Load(".nenv")
+	err := godotenv.Load("nenv")
 	if err != nil {
-		fmt.Println("error loading .nenv file,")
+		log.Print(err)
 		return
 	}
 
@@ -58,14 +63,14 @@ func main() {
 	// Create a Discord session
 	dg, err := discordgo.New("Bot " + token)
 	if err != nil {
-		fmt.Println("error creating Discord session,", err)
+		log.Print(err)
 		return
 	}
 
 	// Open the Discord session
 	err = dg.Open()
 	if err != nil {
-		fmt.Println("error opening connection,", err)
+		log.Print(err)
 		return
 	}
 	// Close the Discord session on exit
