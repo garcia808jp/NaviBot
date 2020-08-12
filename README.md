@@ -28,7 +28,7 @@ _NaviBot is an open source, modular (soon<sup>TM</sup>), cross-platform Discord 
 * FreeBSD x86 and amd64
 
 ### Current Build Requirements
-* go 1.14.7
+* go 1.15
 
 ### Notes
 * Testing is currently limited to Void Linux on PC and Raspberry Pi B Rev 2 (2011.12), and 9front [2020/05/28](http://9front.org/releases/2020/05/28/0/) on PC
@@ -36,12 +36,12 @@ _NaviBot is an open source, modular (soon<sup>TM</sup>), cross-platform Discord 
 hget https://curl.haxx.se/ca/cacert.pem >/sys/lib/tls/ca.pem```
 * The configuration file `nenv` must be in the same directory as the bot
 
-![](doc/Screenshot_9front_2020-08-10_19:32:37.png)
+![navibot-9front](doc/Screenshot_9front_2020-08-10_19:32:37.png)
 *early alpha of NaviBot running on 9front*
 
 ### Links
 * NaviBot Source Code
-<https://github.com/visualfc/liteide>
+<https://github.com/phossil/NaviBot>
 * DiscordGo Source Code
 <https://github.com/bwmarrin/discordgo>
 * Golang Installation
@@ -49,8 +49,14 @@ hget https://curl.haxx.se/ca/cacert.pem >/sys/lib/tls/ca.pem```
 * Void Linux Home
 <https://voidlinux.org/>
 * 9front Home
-<http://9front.org/releases/2020/05/28/0/>
+<http://9front.org/>
 * 9front FQA
 <http://fqa.9front.org/>
 * 9front FQA PDF
 <http://fqa.9front.org/dash1.plan9haters.pdf>
+
+### Extra
+* NAVI
+<https://lain.wiki/wiki/NAVI>
+* Wired Sound
+<https://fauux.neocities.org/>
