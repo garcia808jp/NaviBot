@@ -19,11 +19,12 @@ import (
 
 // Declare some global variables
 var (
-	token       string
-	prefix      string
-	lainPrefix  string
-	startTime   time.Time
+	token      string
+	prefix     string
+	lainPrefix string
+	startTime  time.Time
 )
+
 // Initialize some global constants
 const (
 	codeURL     string = "https://github.com/phossil/NaviBot/"

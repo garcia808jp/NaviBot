@@ -2,6 +2,8 @@
 
 ![navibot-logo](doc/NaviBot-Logo-alpha-transparent-higher.png)
 
+[![go-report-card](https://goreportcard.com/badge/github.com/phossil/NaviBot)](https://goreportcard.com/report/github.com/phossil/NaviBot)
+
 ### Introduction
 
 _NaviBot is an open source, modular (soon<sup>TM</sup>), cross-platform Discord bot._
