@@ -59,7 +59,7 @@ func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 		// Help command
 		case "help":
-			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
+			s.ChannelMessageSend(m.ChannelID, commands.Help(msgArray))
 		// Link to the git repo
 		case "code":
 			s.ChannelMessageSend(m.ChannelID, codeURL)

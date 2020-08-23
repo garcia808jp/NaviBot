@@ -3,6 +3,19 @@
 
 package commands
 
+// Register the command for the CommandList
+func init() {
+	ManDoc := Doc{
+		Name:        "man - search for *nix manual pages from online sources",
+		Synopsis:    "man __query__",
+		Description: "WIP",
+		Example:     "WIP",
+		Origin:      "built-in",
+	}
+
+	CommandList["man"] = ManDoc
+}
+
 // Man command
 // returns a string containing the requested man page from the message array
 func Man(msgArray []string) (msgOut string) {

@@ -30,7 +30,7 @@ _NaviBot is an open source, modular (soon<sup>TM</sup>), cross-platform Discord 
 * FreeBSD x86 and amd64
 
 ### Current Build Requirements
-* go 1.15
+* go 1.14
 
 ### Notes
 * Testing is currently limited to Void Linux on PC and Raspberry Pi B Rev 2 (2011.12), and 9front [2020/05/28](http://9front.org/releases/2020/05/28/0/) on PC
