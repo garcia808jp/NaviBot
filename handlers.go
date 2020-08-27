@@ -113,10 +113,10 @@ func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 			s.ChannelMessageSend(m.ChannelID, lain.Image())
 		// Help the user
 		case "help":
-			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
+			s.ChannelMessageSend(m.ChannelID, lain.Help(msgArray))
 		// Link to the git repo
 		case "code":
-			s.ChannelMessageSend(m.ChannelID, codeURL)
+			s.ChannelMessageSend(m.ChannelID, lain.Code())
 		// Ping a pour soul
 		case "penis":
 			s.ChannelMessageSend(m.ChannelID, lain.Peen())

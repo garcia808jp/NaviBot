@@ -4,7 +4,7 @@
 package commands
 
 // Doc struct
-// contains documentaion about commands, *nix man style
+// contains documentation about commands, *nix man style
 type Doc struct {
 	Name        string
 	Synopsis    string
@@ -13,12 +13,12 @@ type Doc struct {
 	Origin      string
 }
 
-// HelpDoc documentaion
+// HelpDoc documentation
 // Define the help command
 var HelpDoc = Doc{
 	Name:     "help - display help content",
 	Synopsis: "help __command__",
-	Description: "The help command provides documentaion on other commands available " +
+	Description: "The help command provides documentation on other commands available " +
 		"within the bot. It is vaguely modelled in the style of *nix man pages.",
 	Example: "`man`, like the other built-in commands, is called after the configured prefix:" +
 		"\t`$PREFIX help help`",
@@ -30,7 +30,7 @@ var HelpDoc = Doc{
 var CommandList = map[string]Doc{"help": HelpDoc}
 
 // Help command
-// provides documentaion of commands available in the bot
+// provides documentation of commands available in the bot
 func Help(msgArray []string) (msgOut string) {
 	// If there are no arguments notify the user
 	if len(msgArray) == 2 {

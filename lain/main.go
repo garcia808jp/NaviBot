@@ -3,134 +3,65 @@
 
 package lain
 
-import (
-	// Standard packages
-	"math/rand"
-	"time"
-)
-
-// sorri for the ugly code ._.
-// it's here until i can makde it better
-
-// Hug command
-// returns a string containing a random URL in hugSlice
-func Hug() (msgOut string) {
-	// Seed the rand package using current time in Unix format
-	rand.Seed(time.Now().UnixNano())
-	// Choose a rondom integer using the length of the Hug slice
-	randEntry := rand.Intn(len(hugSlice))
-	// Prevent an error if the integer is out of bounds
-	if randEntry == len(hugSlice) {
-		randEntry = randEntry - 1
-	}
-
-	// Create a string using a random entry in hugSlice
-	msgOut = "much yay, very hug !!!\n" + hugSlice[randEntry]
-	return
+// Doc struct
+// contains documentation about commands, *nix man style
+type Doc struct {
+	Name        string
+	Synopsis    string
+	Description string
+	Example     string
+	Origin      string
 }
 
-// Pat command
-// returns a string containing a random URL in patSlice
-func Pat() (msgOut string) {
-	// Seed the rand package using current time in Unix format
-	rand.Seed(time.Now().UnixNano())
-	// Choose a rondom integer using the length of patSlice
-	randEntry := rand.Intn(len(patSlice))
-	// Prevent an error if the integer is out of bounds
-	if randEntry == len(patSlice) {
-		randEntry = randEntry - 1
-	}
-
-	// Create a string using a random entry in patSlice
-	msgOut = "much yay, very uwu !!!\n" + patSlice[randEntry]
-	return
+// HelpDoc documentation
+// Define the help command
+var helpDoc = Doc{
+	Name:     "help - display help content",
+	Synopsis: "help __command__",
+	Description: "The help command provides documentation on other commands available " +
+		"within the bot. It is vaguely modelled in the style of *nix man pages.",
+	Example: "`man`, like the other built-in commands, is called after the configured prefix:" +
+		"\t`$PREFIX help help`",
+	Origin: "built-in, lain",
 }
 
-// EightBall command
-// returns a string from eightBallSlice
-func EightBall(msgArray []string) (msgOut string) {
+// Module project site
+const codeURL string = "https://github.com/phossil/NaviBot"
+
+// CodeDoc documentation
+// Define the help command
+var codeDoc = Doc{
+	Name:        "code - link to module project site",
+	Synopsis:    "code",
+	Description: "WIP",
+	Example:     "WIP",
+	Origin:      "built-in, lain",
+}
+
+// CommandList map
+// contains strings and Doc structs to register commands for the handler
+var CommandList = map[string]Doc{"help": helpDoc, "code": codeDoc}
+
+// Help command
+// provides documentation of commands available in the bot
+func Help(msgArray []string) (msgOut string) {
 	// If there are no arguments notify the user
 	if len(msgArray) == 2 {
-		return "can't tell ur fortune without a queston -_-"
+		return helpDoc.Name
 	}
-	// Seed the rand package using current time in Unix format
-	rand.Seed(time.Now().UnixNano())
-	// Choose a rondom integer using the length of eightBallSlice
-	randEntry := rand.Intn(len(eightBallSlice))
-	// Prevent an error if the integer is out of bounds
-	if randEntry == len(eightBallSlice) {
-		randEntry = randEntry - 1
+	if len(msgArray) >= 3 {
+		_, err := CommandList[msgArray[2]]
+		if err == false {
+			msgOut = "command not found"
+			return
+		}
+		return CommandList[msgArray[2]].Name
 	}
-
-	// Create a string using a random entry in the eightBallSlice
-	msgOut = ":8ball: Lain has a message from beyond~~\n" + eightBallSlice[randEntry]
 	return
 }
 
-// Site command
-// returns a string containing a random URL in siteSlice
-func Site() (msgOut string) {
-	// Seed the rand package using current time in Unix format
-	rand.Seed(time.Now().UnixNano())
-	// Choose a rondom integer using the length of siteSlice
-	randEntry := rand.Intn(len(siteSlice))
-	// Prevent an error if the integer is out of bounds
-	if randEntry == len(siteSlice) {
-		randEntry = randEntry - 1
-	}
-
-	// Create a string using a random entry in siteSlice
-	msgOut = "become one with the wired, faithful follower\n" + siteSlice[randEntry]
-	return
-}
-
-// Gif command
-// returns a string containing a random URL in gifSlice
-func Gif() (msgOut string) {
-	// Seed the rand package using current time in Unix format
-	rand.Seed(time.Now().UnixNano())
-	// Choose a rondom integer using the length of gifSlice
-	randEntry := rand.Intn(len(gifSlice))
-	// Prevent an error if the integer is out of bounds
-	if randEntry == len(gifSlice) {
-		randEntry = randEntry - 1
-	}
-
-	// Create a string using a random entry in gifSlice
-	msgOut = "mlem\n" + gifSlice[randEntry]
-	return
-}
-
-// Image command
-// returns a string containing a random URL in the imageSlice
-func Image() (msgOut string) {
-	// Seed the rand package using current time in Unix format
-	rand.Seed(time.Now().UnixNano())
-	// Choose a rondom integer using the length of imageSlice
-	randEntry := rand.Intn(len(imageSlice))
-	// Prevent an error if the integer is out of bounds
-	if randEntry == len(imageSlice) {
-		randEntry = randEntry - 1
-	}
-
-	// Create a string using a random entry in imageSlice
-	msgOut = "owo\n" + imageSlice[randEntry]
-	return
-}
-
-// Peen command
-// returns a string containing a random URL in peenSlice
-func Peen() (msgOut string) {
-	// Seed the rand package using current time in Unix format
-	rand.Seed(time.Now().UnixNano())
-	// Choose a rondom integer using the length of peenSlice
-	randEntry := rand.Intn(len(peenSlice))
-	// Prevent an error if the integer is out of bounds
-	if randEntry == len(peenSlice) {
-		randEntry = randEntry - 1
-	}
-
-	// Create a string using a random entry in peenSlice
-	msgOut = peenSlice[randEntry]
-	return
+// Code command
+// links to module project site
+func Code() (msgOut string) {
+	return codeURL
 }
