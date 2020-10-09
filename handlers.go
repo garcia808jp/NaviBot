@@ -120,6 +120,9 @@ func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		// Ping a pour soul
 		case "penis":
 			s.ChannelMessageSend(m.ChannelID, lain.Peen())
+		// Return a bop
+		case "bop":
+			s.ChannelMessageSend(m.ChannelID, lain.Bop())
 		// Notify the user if the command is not recognised
 		default:
 			s.ChannelMessageSend(m.ChannelID, "command not recognized")

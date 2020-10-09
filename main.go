@@ -29,6 +29,7 @@ var (
 const (
 	codeURL     string = "https://github.com/phossil/NaviBot/"
 	greetingMsg string = "NaviBot: Discord bot for digital assistance"
+	version     string = "0.0.1-alpha-20201006"
 )
 
 // Init function
