@@ -1,25 +1,25 @@
 // NaviBot: Discord bot for digital assistance
-// man commands
+// man command
 
 package commands
 
 // Register the command for the CommandList
 func init() {
-	ManDoc := Doc{
-		Name:        "man - search for *nix manual pages from online sources",
-		Synopsis:    "man __query__",
-		Description: "WIP",
-		Example:     "WIP",
-		Origin:      "built-in",
-		Exec:        Man,
+	manDoc := command{
+		name:        "man - search for *nix manual pages from online sources",
+		synopsis:    "man __query__",
+		description: "WIP",
+		example:     "WIP",
+		origin:      "built-in",
+		Exec:        man,
 	}
 
-	CommandList["man"] = ManDoc
+	CommandList["man"] = manDoc
 }
 
 // Man command
 // returns a string containing the requested man page from the message array
-func Man(msgArray []string) (msgOut string) {
+func man(msgArray []string) (msgOut string) {
 	// If the message contains arguments, complete the task; notify the user otherwise
 	if len(msgArray) >= 3 {
 		// The default URL for the online man pages

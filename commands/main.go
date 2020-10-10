@@ -3,39 +3,42 @@
 
 package commands
 
-// Doc struct
+// command struct
 // provides access to commands and information about them
-type Doc struct {
-	Name        string
-	Synopsis    string
-	Description string
-	Example     string
-	Origin      string
+type command struct {
+	name        string
+	synopsis    string
+	description string
+	example     string
+	origin      string
 	Exec        func([]string) string
 }
 
-// HelpDoc documentation
-// Define the help command
-var HelpDoc = Doc{
-	Name:     "help - display help content",
-	Synopsis: "help __command__",
-	Description: "The help command provides documentation on other commands available " +
-		"within the bot. It is vaguely modelled in the style of *nix man pages.",
-	Example: "`man`, like the other built-in commands, is called after the configured prefix:" +
-		"\t`$PREFIX help help`",
-	Origin: "built-in",
+var helpDoc command
+
+func init() {
+	// HelpDoc documentation
+	// Define the help command
+	helpDoc = command{
+		name:        "help - display help content",
+		synopsis:    "help __command__",
+		description: "The help command provides documentation on other commands available within the bot. It is vaguely modelled in the style of *nix man pages.",
+		example:     "`man`, like the other built-in commands, is called after the configured prefix:\t`$PREFIX help help`",
+		origin:      "built-in",
+		Exec:        help,
+	}
 }
 
 // CommandList map
 // contains strings and Doc structs to register commands for the handler
-var CommandList = map[string]Doc{"help": HelpDoc}
+var CommandList = map[string]command{"help": helpDoc}
 
 // Help command
 // provides documentation of commands available in the bot
-func Help(msgArray []string) (msgOut string) {
+func help(msgArray []string) (msgOut string) {
 	// If there are no arguments notify the user
 	if len(msgArray) == 2 {
-		return HelpDoc.Name
+		return helpDoc.name
 	}
 	if len(msgArray) >= 3 {
 		_, err := CommandList[msgArray[2]]
@@ -43,7 +46,7 @@ func Help(msgArray []string) (msgOut string) {
 			msgOut = "command not found"
 			return
 		}
-		return CommandList[msgArray[2]].Name
+		return CommandList[msgArray[2]].name
 	}
 	return
 }

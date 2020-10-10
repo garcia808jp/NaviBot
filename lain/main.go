@@ -14,18 +14,6 @@ type Doc struct {
 	Exec        func([]string) string
 }
 
-// HelpDoc documentation
-// Define the help command
-var helpDoc = Doc{
-	Name:     "help - display help content",
-	Synopsis: "help __command__",
-	Description: "The help command provides documentation on other commands available " +
-		"within the bot. It is vaguely modelled in the style of *nix man pages.",
-	Example: "`man`, like the other built-in commands, is called after the configured prefix:" +
-		"\t`$PREFIX help help`",
-	Origin: "built-in, lain",
-}
-
 // Module project site
 const codeURL string = "https://github.com/phossil/NaviBot"
 
@@ -37,11 +25,30 @@ var codeDoc = Doc{
 	Description: "WIP",
 	Example:     "WIP",
 	Origin:      "built-in, lain",
+	Exec:        code,
 }
 
 // CommandList map
 // contains strings and Doc structs to register commands for the handler
-var CommandList = map[string]Doc{"help": helpDoc, "code": codeDoc}
+var CommandList = map[string]Doc{"code": codeDoc}
+
+// empty HelpDoc struct
+// placed here to prevent an initializition loop
+var helpDoc Doc
+
+func init() {
+	// HelpDoc struct
+	// Define the help command
+	helpDoc := Doc{
+		Name:        "help - display help content",
+		Synopsis:    "help __command__",
+		Description: "The help command provides documentation on other commands available within the bot. It is vaguely modelled in the style of *nix man pages.",
+		Example:     "`man`, like the other built-in commands, is called after the configured prefix:\t`$PREFIX help help`",
+		Origin:      "built-in, lain",
+		Exec:        Help,
+	}
+	CommandList["help"] = helpDoc
+}
 
 // Help command
 // provides documentation of commands available in the bot
@@ -63,6 +70,6 @@ func Help(msgArray []string) (msgOut string) {
 
 // Code command
 // links to module project site
-func Code([]string) (msgOut string) {
+func code([]string) (msgOut string) {
 	return codeURL
 }
