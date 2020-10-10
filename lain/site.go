@@ -12,20 +12,20 @@ import (
 // Register the command for the CommandList
 func init() {
 	siteDoc := Doc{
-		Name:        "site - WIP",
-		Synopsis:    "site",
-		Description: "WIP",
-		Example:     "WIP",
-		Origin:      "built-in, lain",
-		Exec:        Site,
+		name:        "site - WIP",
+		synopsis:    "site",
+		description: "WIP",
+		example:     "WIP",
+		origin:      "built-in, lain",
+		Exec:        site,
 	}
 
 	CommandList["site"] = siteDoc
 }
 
-// Site command
+// site command
 // returns a string containing a random URL in siteSlice
-func Site([]string) (msgOut string) {
+func site([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of siteSlice
@@ -40,7 +40,7 @@ func Site([]string) (msgOut string) {
 	return
 }
 
-// Site slice
+// site slice
 // contains a list of Lain related sites
 var siteSlice = [...]string{
 	"http://lain.angelic-trust.net/wired.html",

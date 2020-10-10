@@ -12,20 +12,20 @@ import (
 // Register the command for the CommandList
 func init() {
 	hugDoc := Doc{
-		Name:        "hug - WIP",
-		Synopsis:    "hug",
-		Description: "WIP",
-		Example:     "WIP",
-		Origin:      "built-in, lain",
-		Exec:        Hug,
+		name:        "hug - WIP",
+		synopsis:    "hug",
+		description: "WIP",
+		example:     "WIP",
+		origin:      "built-in, lain",
+		Exec:        hug,
 	}
 
 	CommandList["hug"] = hugDoc
 }
 
-// Hug command
+// hug command
 // returns a string containing a random URL in hugSlice
-func Hug([]string) (msgOut string) {
+func hug([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of the Hug slice

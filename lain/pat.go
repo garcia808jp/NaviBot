@@ -12,20 +12,20 @@ import (
 // Register the command for the CommandList
 func init() {
 	patDoc := Doc{
-		Name:        "pat - WIP",
-		Synopsis:    "pat",
-		Description: "WIP",
-		Example:     "WIP",
-		Origin:      "built-in, lain",
-		Exec:        Pat,
+		name:        "pat - WIP",
+		synopsis:    "pat",
+		description: "WIP",
+		example:     "WIP",
+		origin:      "built-in, lain",
+		Exec:        pat,
 	}
 
 	CommandList["pat"] = patDoc
 }
 
-// Pat command
+// pat command
 // returns a string containing a random URL in patSlice
-func Pat([]string) (msgOut string) {
+func pat([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of patSlice
@@ -40,7 +40,7 @@ func Pat([]string) (msgOut string) {
 	return
 }
 
-// Pat slice
+// pat slice
 // contains a list of images that have pats
 var patSlice = [...]string{
 	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR_B2M0Yc9qyqXjKrqLRAJngXEpM1XUxb9lYeOr9eJdndts0tB",

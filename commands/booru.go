@@ -5,7 +5,7 @@ package commands
 
 // Register the command for the CommandList
 func init() {
-	ManDoc := command{
+	leDoc := command{
 		name:        "le - search for images from *booru sites",
 		synopsis:    "le __query__",
 		description: "WIP",
@@ -14,7 +14,7 @@ func init() {
 		Exec:        le,
 	}
 
-	CommandList["man"] = ManDoc
+	CommandList["le"] = leDoc
 }
 
 // Man command

@@ -14,10 +14,30 @@ type command struct {
 	Exec        func([]string) string
 }
 
+// module project site
+const codeURL string = "https://github.com/phossil/NaviBot"
+
+// CodeDoc documentation
+// Define the help command
+var codeDoc = command{
+	name:        "code - link to project site",
+	synopsis:    "code",
+	description: "WIP",
+	example:     "WIP",
+	origin:      "built-in",
+	Exec:        code,
+}
+
+// CommandList map
+// contains strings and Doc structs to register commands for the handler
+var CommandList = map[string]command{"code": codeDoc}
+
+// empty helpDoc struct
+// placed here to prevent an initializition loop
 var helpDoc command
 
 func init() {
-	// HelpDoc documentation
+	// helpDoc documentation
 	// Define the help command
 	helpDoc = command{
 		name:        "help - display help content",
@@ -27,13 +47,10 @@ func init() {
 		origin:      "built-in",
 		Exec:        help,
 	}
+	CommandList["help"] = helpDoc
 }
 
-// CommandList map
-// contains strings and Doc structs to register commands for the handler
-var CommandList = map[string]command{"help": helpDoc}
-
-// Help command
+// help command
 // provides documentation of commands available in the bot
 func help(msgArray []string) (msgOut string) {
 	// If there are no arguments notify the user
@@ -49,4 +66,10 @@ func help(msgArray []string) (msgOut string) {
 		return CommandList[msgArray[2]].name
 	}
 	return
+}
+
+// code command
+// links to module project site
+func code([]string) (msgOut string) {
+	return codeURL
 }

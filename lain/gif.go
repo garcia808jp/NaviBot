@@ -12,20 +12,20 @@ import (
 // Register the command for the CommandList
 func init() {
 	gifDoc := Doc{
-		Name:        "gif - WIP",
-		Synopsis:    "gif",
-		Description: "WIP",
-		Example:     "WIP",
-		Origin:      "built-in, lain",
-		Exec:        Gif,
+		name:        "gif - WIP",
+		synopsis:    "gif",
+		description: "WIP",
+		example:     "WIP",
+		origin:      "built-in, lain",
+		Exec:        gif,
 	}
 
 	CommandList["gif"] = gifDoc
 }
 
-// Gif command
+// gif command
 // returns a string containing a random URL in gifSlice
-func Gif([]string) (msgOut string) {
+func gif([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of gifSlice
@@ -40,7 +40,7 @@ func Gif([]string) (msgOut string) {
 	return
 }
 
-// Gif slice
+// gif slice
 // contains a list of online GIFs
 var gifSlice = [...]string{
 	"http://25.media.tumblr.com/tumblr_m2hpn4XlZQ1r73plvo1_500.gif",

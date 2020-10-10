@@ -12,20 +12,20 @@ import (
 // Register the command for the CommandList
 func init() {
 	peenDoc := Doc{
-		Name:        "peen - bully a member",
-		Synopsis:    "peen __user__",
-		Description: "WIP",
-		Example:     "WIP",
-		Origin:      "built-in, lain",
-		Exec:        Peen,
+		name:        "peen - bully a member",
+		synopsis:    "peen __user__",
+		description: "WIP",
+		example:     "WIP",
+		origin:      "built-in, lain",
+		Exec:        peen,
 	}
 
 	CommandList["penis"] = peenDoc
 }
 
-// Peen command
+// peen command
 // returns a string containing a random URL in peenSlice
-func Peen([]string) (msgOut string) {
+func peen([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of peenSlice
@@ -40,7 +40,7 @@ func Peen([]string) (msgOut string) {
 	return
 }
 
-// Peen slice
+// peen slice
 // insults to bully with
 var peenSlice = [...]string{
 	"hi <@98773013649977344>",

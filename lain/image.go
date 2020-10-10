@@ -12,20 +12,20 @@ import (
 // Register the command for the CommandList
 func init() {
 	imgDoc := Doc{
-		Name:        "image - WIP",
-		Synopsis:    "image",
-		Description: "WIP",
-		Example:     "WIP",
-		Origin:      "built-in, lain",
-		Exec:        Image,
+		name:        "image - WIP",
+		synopsis:    "image",
+		description: "WIP",
+		example:     "WIP",
+		origin:      "built-in, lain",
+		Exec:        image,
 	}
 
 	CommandList["image"] = imgDoc
 }
 
-// Image command
+// image command
 // returns a string containing a random URL in the imageSlice
-func Image([]string) (msgOut string) {
+func image([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of imageSlice
@@ -40,7 +40,7 @@ func Image([]string) (msgOut string) {
 	return
 }
 
-// Image slice
+// image slice
 // contains a list of images with Lain
 var imageSlice = [...]string{
 	"http://33.media.tumblr.com/f3307a1bb2de561902c3f4aa94819b90/tumblr_nttc6uSVuq1u4zgnro1_400.gif",

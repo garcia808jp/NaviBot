@@ -12,20 +12,20 @@ import (
 // Register the command for the CommandList
 func init() {
 	bopDoc := Doc{
-		Name:        "bop - WIP",
-		Synopsis:    "bop",
-		Description: "WIP",
-		Example:     "WIP",
-		Origin:      "built-in, lain",
-		Exec:        Bop,
+		name:        "bop - WIP",
+		synopsis:    "bop",
+		description: "WIP",
+		example:     "WIP",
+		origin:      "built-in, lain",
+		Exec:        bop,
 	}
 
 	CommandList["bop"] = bopDoc
 }
 
-// Bop command
+// bop command
 // returns a string containing a random URL in bopSlice
-func Bop([]string) (msgOut string) {
+func bop([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of the bop slice
@@ -40,7 +40,7 @@ func Bop([]string) (msgOut string) {
 	return
 }
 
-// Bop slice
+// bop slice
 // contains a list of images with bops
 var bopSlice = [...]string{
 	"https://cdn.4archive.org/img/zERCrSXm.gif",

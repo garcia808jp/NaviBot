@@ -12,20 +12,20 @@ import (
 // Register the command for the CommandList
 func init() {
 	ebDoc := Doc{
-		Name:        "8ball - divination with the goddess herself",
-		Synopsis:    "8ball __question__",
-		Description: "WIP",
-		Example:     "WIP",
-		Origin:      "built-in, lain",
-		Exec:        EightBall,
+		name:        "8ball - divination with the goddess herself",
+		synopsis:    "8ball __question__",
+		description: "WIP",
+		example:     "WIP",
+		origin:      "built-in, lain",
+		Exec:        eightBall,
 	}
 
 	CommandList["8ball"] = ebDoc
 }
 
-// EightBall command
+// eightBall command
 // returns a string from eightBallSlice
-func EightBall(msgArray []string) (msgOut string) {
+func eightBall(msgArray []string) (msgOut string) {
 	// If there are no arguments notify the user
 	if len(msgArray) == 2 {
 		return "can't tell ur fortune without a queston -_-"
@@ -44,7 +44,7 @@ func EightBall(msgArray []string) (msgOut string) {
 	return
 }
 
-// EightBall slice
+// eightBall slice
 // a slice of strings that tell your fortune
 var eightBallSlice = [...]string{
 	"It is certain.",
