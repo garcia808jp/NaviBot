@@ -17,6 +17,7 @@ func init() {
 		Description: "WIP",
 		Example:     "WIP",
 		Origin:      "built-in, lain",
+		Exec:        Peen,
 	}
 
 	CommandList["penis"] = peenDoc
@@ -24,7 +25,7 @@ func init() {
 
 // Peen command
 // returns a string containing a random URL in peenSlice
-func Peen() (msgOut string) {
+func Peen([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of peenSlice

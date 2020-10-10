@@ -11,6 +11,7 @@ func init() {
 		Description: "WIP",
 		Example:     "WIP",
 		Origin:      "built-in",
+		Exec:        Man,
 	}
 
 	CommandList["man"] = ManDoc

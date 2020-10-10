@@ -17,6 +17,7 @@ func init() {
 		Description: "WIP",
 		Example:     "WIP",
 		Origin:      "built-in, lain",
+		Exec:        Site,
 	}
 
 	CommandList["site"] = siteDoc
@@ -24,7 +25,7 @@ func init() {
 
 // Site command
 // returns a string containing a random URL in siteSlice
-func Site() (msgOut string) {
+func Site([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of siteSlice

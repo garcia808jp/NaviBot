@@ -17,6 +17,7 @@ func init() {
 		Description: "WIP",
 		Example:     "WIP",
 		Origin:      "built-in, lain",
+		Exec:        Bop,
 	}
 
 	CommandList["bop"] = bopDoc
@@ -24,7 +25,7 @@ func init() {
 
 // Bop command
 // returns a string containing a random URL in bopSlice
-func Bop() (msgOut string) {
+func Bop([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of the bop slice

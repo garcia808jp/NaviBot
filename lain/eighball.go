@@ -17,6 +17,7 @@ func init() {
 		Description: "WIP",
 		Example:     "WIP",
 		Origin:      "built-in, lain",
+		Exec:        EightBall,
 	}
 
 	CommandList["8ball"] = ebDoc

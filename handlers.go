@@ -89,43 +89,52 @@ func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		if len(msgArray) == 1 {
 			s.ChannelMessageSend(m.ChannelID, greetingMsg)
 			return
+		} else if len(msgArray) >= 2 {
+			_, err := lain.CommandList[msgArray[1]]
+			if err == false {
+				s.ChannelMessageSend(m.ChannelID, "command not found")
+				return
+			}
+			s.ChannelMessageSend(m.ChannelID, lain.CommandList[msgArray[1]].Exec(msgArray))
+			return
+		} else {
+			s.ChannelMessageSend(m.ChannelID, "unknown error?: end of 'else if'")
 		}
-
-		// Check the user input against the  built-in commands
-		switch msgArray[1] {
-		// Return a wholesome image if the user wants a hug
-		case "hug":
-			s.ChannelMessageSend(m.ChannelID, lain.Hug())
-		// Return a wholesome image if the user wants a pat
-		case "pat":
-			s.ChannelMessageSend(m.ChannelID, lain.Pat())
-		// Return a random fortune
-		case "8ball":
-			s.ChannelMessageSend(m.ChannelID, lain.EightBall(msgArray))
-		// Return a random wired site
-		case "site":
-			s.ChannelMessageSend(m.ChannelID, lain.Site())
-		// Return a random gif
-		case "gif":
-			s.ChannelMessageSend(m.ChannelID, lain.Gif())
-		// Return a random image
-		case "image":
-			s.ChannelMessageSend(m.ChannelID, lain.Image())
-		// Help the user
-		case "help":
-			s.ChannelMessageSend(m.ChannelID, lain.Help(msgArray))
-		// Link to the git repo
-		case "code":
-			s.ChannelMessageSend(m.ChannelID, lain.Code())
-		// Ping a pour soul
-		case "penis":
-			s.ChannelMessageSend(m.ChannelID, lain.Peen())
-		// Return a bop
-		case "bop":
-			s.ChannelMessageSend(m.ChannelID, lain.Bop())
-		// Notify the user if the command is not recognised
-		default:
-			s.ChannelMessageSend(m.ChannelID, "command not recognized")
-		}
+		// // Check the user input against the  built-in commands
+		// switch msgArray[1] {
+		// // Return a wholesome image if the user wants a hug
+		// case "hug":
+		// 	s.ChannelMessageSend(m.ChannelID, lain.Hug(msgArray))
+		// // Return a wholesome image if the user wants a pat
+		// case "pat":
+		// 	s.ChannelMessageSend(m.ChannelID, lain.Pat(msgArray))
+		// // Return a random fortune
+		// case "8ball":
+		// 	s.ChannelMessageSend(m.ChannelID, lain.EightBall(msgArray))
+		// // Return a random wired site
+		// case "site":
+		// 	s.ChannelMessageSend(m.ChannelID, lain.Site(msgArray))
+		// // Return a random gif
+		// case "gif":
+		// 	s.ChannelMessageSend(m.ChannelID, lain.Gif(msgArray))
+		// // Return a random image
+		// case "image":
+		// 	s.ChannelMessageSend(m.ChannelID, lain.Image(msgArray))
+		// // Help the user
+		// case "help":
+		// 	s.ChannelMessageSend(m.ChannelID, lain.Help(msgArray))
+		// // Link to the git repo
+		// case "code":
+		// 	s.ChannelMessageSend(m.ChannelID, lain.Code(msgArray))
+		// // Ping a pour soul
+		// case "penis":
+		// 	s.ChannelMessageSend(m.ChannelID, lain.Peen(msgArray))
+		// // Return a bop
+		// case "bop":
+		// 	s.ChannelMessageSend(m.ChannelID, lain.Bop(msgArray))
+		// // Notify the user if the command is not recognised
+		// default:
+		// 	s.ChannelMessageSend(m.ChannelID, "command not recognized")
+		// }
 	}
 }

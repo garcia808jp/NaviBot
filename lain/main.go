@@ -4,13 +4,14 @@
 package lain
 
 // Doc struct
-// contains documentation about commands, *nix man style
+// provides access to commands and information about them
 type Doc struct {
 	Name        string
 	Synopsis    string
 	Description string
 	Example     string
 	Origin      string
+	Exec        func([]string) string
 }
 
 // HelpDoc documentation
@@ -62,6 +63,6 @@ func Help(msgArray []string) (msgOut string) {
 
 // Code command
 // links to module project site
-func Code() (msgOut string) {
+func Code([]string) (msgOut string) {
 	return codeURL
 }

@@ -17,6 +17,7 @@ func init() {
 		Description: "WIP",
 		Example:     "WIP",
 		Origin:      "built-in, lain",
+		Exec:        Image,
 	}
 
 	CommandList["image"] = imgDoc
@@ -24,7 +25,7 @@ func init() {
 
 // Image command
 // returns a string containing a random URL in the imageSlice
-func Image() (msgOut string) {
+func Image([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of imageSlice

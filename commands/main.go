@@ -4,13 +4,14 @@
 package commands
 
 // Doc struct
-// contains documentation about commands, *nix man style
+// provides access to commands and information about them
 type Doc struct {
 	Name        string
 	Synopsis    string
 	Description string
 	Example     string
 	Origin      string
+	Exec        func([]string) string
 }
 
 // HelpDoc documentation

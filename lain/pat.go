@@ -17,6 +17,7 @@ func init() {
 		Description: "WIP",
 		Example:     "WIP",
 		Origin:      "built-in, lain",
+		Exec:        Pat,
 	}
 
 	CommandList["pat"] = patDoc
@@ -24,7 +25,7 @@ func init() {
 
 // Pat command
 // returns a string containing a random URL in patSlice
-func Pat() (msgOut string) {
+func Pat([]string) (msgOut string) {
 	// Seed the rand package using current time in Unix format
 	rand.Seed(time.Now().UnixNano())
 	// Choose a rondom integer using the length of patSlice
