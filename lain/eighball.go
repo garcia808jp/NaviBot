@@ -40,7 +40,7 @@ func eightBall(msgArray []string) (msgOut string) {
 	}
 
 	// Create a string using a random entry in the eightBallSlice
-	msgOut = ":8ball: Lain has a message from beyond~~\n" + eightBallSlice[randEntry]
+	msgOut = ":8ball: " + eightBallSlice[randEntry]
 	return
 }
 

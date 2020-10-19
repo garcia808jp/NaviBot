@@ -36,7 +36,7 @@ func image([]string) (msgOut string) {
 	}
 
 	// Create a string using a random entry in imageSlice
-	msgOut = "owo\n" + imageSlice[randEntry]
+	msgOut = imageSlice[randEntry]
 	return
 }
 

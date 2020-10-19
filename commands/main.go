@@ -3,6 +3,11 @@
 
 package commands
 
+import "time"
+
+// module project site
+const codeURL string = "https://github.com/phossil/NaviBot/"
+
 // command struct
 // provides access to commands and information about them
 type command struct {
@@ -13,9 +18,6 @@ type command struct {
 	origin      string
 	Exec        func([]string) string
 }
-
-// module project site
-const codeURL string = "https://github.com/phossil/NaviBot"
 
 // CodeDoc documentation
 // Define the help command
@@ -28,21 +30,29 @@ var codeDoc = command{
 	Exec:        code,
 }
 
-// CommandList map
-// contains strings and Doc structs to register commands for the handler
-var CommandList = map[string]command{"code": codeDoc}
+var (
+	// CommandList map
+	// contains strings and Doc structs to register commands for the handler
+	CommandList = map[string]command{"code": codeDoc}
 
-// empty helpDoc struct
-// placed here to prevent an initializition loop
-var helpDoc command
+	// empty helpDoc struct
+	// placed here to prevent an initializition loop
+	helpDoc command
+
+	// for use with the uptime command
+	startTime time.Time
+)
 
 func init() {
+	// Grab the time on package startup
+	startTime = time.Now()
+
 	// helpDoc documentation
 	// Define the help command
 	helpDoc = command{
 		name:        "help - display help content",
 		synopsis:    "help __command__",
-		description: "The help command provides documentation on other commands available within the bot. It is vaguely modelled in the style of *nix man pages.",
+		description: "The help command provides information on other commands available within the bot. It is vaguely modelled in the style of *nix man pages.",
 		example:     "`man`, like the other built-in commands, is called after the configured prefix:\t`$PREFIX help help`",
 		origin:      "built-in",
 		Exec:        help,

@@ -36,7 +36,7 @@ func gif([]string) (msgOut string) {
 	}
 
 	// Create a string using a random entry in gifSlice
-	msgOut = "mlem\n" + gifSlice[randEntry]
+	msgOut = gifSlice[randEntry]
 	return
 }
 

@@ -36,7 +36,7 @@ func hug([]string) (msgOut string) {
 	}
 
 	// Create a string using a random entry in hugSlice
-	msgOut = "much yay, very hug !!!\n" + hugSlice[randEntry]
+	msgOut = hugSlice[randEntry]
 	return
 }
 

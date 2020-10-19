@@ -36,7 +36,7 @@ func site([]string) (msgOut string) {
 	}
 
 	// Create a string using a random entry in siteSlice
-	msgOut = "become one with the wired, faithful follower\n" + siteSlice[randEntry]
+	msgOut = siteSlice[randEntry]
 	return
 }
 

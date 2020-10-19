@@ -29,7 +29,7 @@ var (
 const (
 	codeURL     string = "https://github.com/phossil/NaviBot/"
 	greetingMsg string = "NaviBot: Discord bot for digital assistance"
-	version     string = "0.0.1-alpha-20201010"
+	version     string = "0.0.1-alpha-20201019"
 )
 
 // Init function
@@ -57,9 +57,6 @@ func init() {
 func main() {
 	// Output the data type of 'token' and the value of 'prefix'
 	fmt.Printf("\n\tTOKEN=%T\n\tPREFIX=\"%v\"\n\tLAIN_PREFIX=\"%v\"\n", token, prefix, lainPrefix)
-
-	// Output the startTime to console
-	fmt.Printf("\n\tstart time: %v\n", startTime)
 
 	// Create a Discord session
 	dg, err := discordgo.New("Bot " + token)

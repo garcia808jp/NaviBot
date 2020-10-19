@@ -36,7 +36,7 @@ func pat([]string) (msgOut string) {
 	}
 
 	// Create a string using a random entry in patSlice
-	msgOut = "much yay, very uwu !!!\n" + patSlice[randEntry]
+	msgOut = patSlice[randEntry]
 	return
 }
 

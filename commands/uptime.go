@@ -3,6 +3,8 @@
 
 package commands
 
+import "time"
+
 // Register the command for the CommandList
 func init() {
 	uptimeDoc := command{
@@ -20,6 +22,6 @@ func init() {
 // uptime command
 // return the bot's uptime using an ugly solution via msgArray
 func uptime(msgArray []string) (msgOut string) {
-	// time.Since(startTime).String()
-	return "command currently broken"
+	msgOut = time.Since(startTime).String()
+	return
 }
