@@ -53,6 +53,7 @@ var bopSlice = [...]string{
 	"https://imgur.com/gallery/dsWJ44N",
 	"https://imgur.com/t/toradora/X0ziFMf",
 	"https://media0.giphy.com/media/3o7TKBOPWDLbypGYbC",
+	"https://media1.giphy.com/media/KI14N7D3AJ4SA/giphy.gif",
 	"https://tenor.com/view/anime-blends-mafuyu-hit-gif-10185644",
 	"https://tenor.com/view/anime-hit-bonk-rikka-gif-18191826",
 	"https://tenor.com/view/bang-dream-bandori-anime-bonk-poppin-party-gif-16570141",
@@ -63,5 +64,4 @@ var bopSlice = [...]string{
 	"https://tenor.com/view/horny-bonk-bonk-amazed-smack-gif-17599906",
 	"https://tenor.com/view/horny-jail-bonk-dog-hit-head-stop-being-horny-gif-17298755",
 	"https://tenor.com/view/sango-miroku-funny-inuyasha-anime-gif-14787460",
-	"https://www.primogif.com/p/KI14N7D3AJ4SA",
 }
