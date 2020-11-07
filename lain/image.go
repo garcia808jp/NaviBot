@@ -264,7 +264,6 @@ var imageSlice = [...]string{
 	"https://raikou2.donmai.us/7f/2d/7f2d8cc8fc14b08373089a95c0a3182d.jpg",
 	"https://s3.amazonaws.com/cult-of-distraction/media/articles/images/lain-13.png",
 	"https://scontent-amt2-1.cdninstagram.com/vp/3aaab5cdf84dcba75ea9546789340e52/5CD0568C/t51.2885-15/sh0.08/e35/s640x640/42068850_620156955045839_471048183435590991_n.jpg?_nc_ht=scontent-amt2-1.cdninstagram.com",
-	"https://scontent-atl3-1.cdninstagram.com/vp/61a380b854e01d4b1bb5a6b816beeb15/5C9B9A1B/t51.2885-15/e35/29093379_385671531907205_2690296831937609728_n.jpg",
 	"https://scontent-sea1-1.cdninstagram.com/vp/c522fb17c6ed140811ec8b712968ce84/5CC7B08F/t51.2885-15/e35/c119.0.481.481/s480x480/28158331_1090161284476580_3726883881702391808_n.jpg?_nc_ht=scontent-sea1-1.cdninstagram.com",
 	"https://static.zerochan.net/Iwakura.Lain.full.1207948.jpg",
 	"https://static.zerochan.net/Iwakura.Lain.full.132356.jpg",

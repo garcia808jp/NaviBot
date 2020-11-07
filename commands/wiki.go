@@ -1,9 +1,10 @@
 // NaviBot: Discord bot for digital assistance
-// lw command
+// wiki command
 
 package commands
 
 import (
+	"strings"
 	// standard
 	"net/url"
 
@@ -14,26 +15,30 @@ import (
 
 // Register the command for the CommandList
 func init() {
-	lwDoc := command{
-		name:        "lw - link to pages in the lain wiki",
-		synopsis:    "lw __query__",
+	wikiDoc := command{
+		name:        "wiki - link to pages in the lain wiki",
+		synopsis:    "wiki __query__",
 		description: "WIP, only accepts one word for the query",
 		example:     "WIP",
 		origin:      "built-in",
-		Exec:        lw,
+		Exec:        wiki,
 	}
 
-	CommandList["lw"] = lwDoc
+	CommandList["wiki"] = wikiDoc
 }
 
-// lw command
+// wiki command
 // interacts with the MediaWiki API to make a URL of the requested page
-func lw(msgArray []string) (msgOut string) {
+func wiki(msgArray []string) (msgOut string) {
 	// quit if there are not enough arguments
 	if len(msgArray) == 2 {
 		msgOut = "command accepts one word for the query at the moment"
 		return
 	}
+
+	// remove prefix and command from msgArray and join the fields
+	msgArray[0], msgArray[1] = "", ""
+	userQuery := strings.Join(msgArray, " ")
 
 	// lain.wiki URLs for the MediaWiki API and article path
 	// DOES NOT ACCOUNT FOR SPECIAL NAMESPACE PATHS
@@ -50,19 +55,32 @@ func lw(msgArray []string) (msgOut string) {
 		"action":   "query",
 		"list":     "search",
 		"srlimit":  "1",
-		"srsearch": msgArray[2],
+		"srsearch": userQuery,
 	}
 	response, err := w.Get(parameters)
 	if err != nil {
 		panic(err)
 	}
 
-	// USE "TOTALHITS" TO AVOID ERROR IF NO RESULT IS FOUND
+	// here lies ugly
 
 	// open json object "query"
 	query, err := response.GetObject("query")
 	if err != nil {
 		panic(err)
+	}
+	// open json object "searchinfo"
+	searchinfo, err := query.GetObject("searchinfo")
+	if err != nil {
+		panic(err)
+	}
+	// open "totalhits" from "searchinfo" to know the amount of hits for the given query
+	totalhits, err := searchinfo.GetNumber("totalhits")
+	if err != nil {
+		panic(err)
+	} else if totalhits == "0" {
+		// return if there are no hits
+		return "no results found"
 	}
 	// open json object of arrays (?) "search"
 	search, err := query.GetObjectArray("search")

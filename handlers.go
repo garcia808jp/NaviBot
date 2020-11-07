@@ -24,13 +24,11 @@ func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-	// Parse the message as a string array
-	// msgArray[0] should be the prefix
-	// entries after that should be arguments
-	msgArray := strings.Fields(m.Content)
-
 	// Respond to messages containing the prefix
-	if msgArray[0] == prefix {
+	if strings.HasPrefix(m.Content, prefix) == true {
+		// Parse the message as a string array
+		msgArray := strings.Fields(m.Content)
+
 		// Make sure there is a second entry in the array
 		// ie is there a command in the message
 		if len(msgArray) == 1 {
@@ -57,11 +55,11 @@ func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-	// Parse the message as a string array
-	msgArray := strings.Fields(m.Content)
-
 	// Respond to messages containing the prefix
-	if msgArray[0] == lainPrefix {
+	if strings.HasPrefix(m.Content, lainPrefix) == true {
+		// Parse the message as a string array
+		msgArray := strings.Fields(m.Content)
+
 		// Make sure there is a second entry in the array
 		// ie is there a command in the message
 		if len(msgArray) == 1 {
