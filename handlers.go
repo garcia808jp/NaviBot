@@ -8,7 +8,6 @@ package main
 import (
 	// Standard
 	"strings"
-	"time"
 
 	// Third-party
 	"github.com/bwmarrin/discordgo"
@@ -37,35 +36,16 @@ func mainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		if len(msgArray) == 1 {
 			s.ChannelMessageSend(m.ChannelID, greetingMsg)
 			return
-		}
-
-		// Check the user input against the  built-in commands
-		switch msgArray[1] {
-		// If the message is "ping" reply with "pong"
-		case "ping":
-			s.ChannelMessageSend(m.ChannelID, "pong")
-		// If the message is "pong" reply with "ping"
-		case "pong":
-			s.ChannelMessageSend(m.ChannelID, "ping")
-		// If the message is "uptime" reply with the uptime in string format
-		case "uptime":
-			s.ChannelMessageSend(m.ChannelID, time.Since(startTime).String())
-		// Query the requested man page from online
-		case "man":
-			s.ChannelMessageSend(m.ChannelID, commands.Man(msgArray))
-		// Search for requested images from *booru
-		case "le":
-			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
-
-		// Help command
-		case "help":
-			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
-		// Link to the git repo
-		case "code":
-			s.ChannelMessageSend(m.ChannelID, codeURL)
-		// Notify the user if the command is not recognised
-		default:
-			s.ChannelMessageSend(m.ChannelID, "command not recognized")
+		} else if len(msgArray) >= 2 {
+			_, err := commands.CommandList[msgArray[1]]
+			if err == false {
+				s.ChannelMessageSend(m.ChannelID, "command not recognized")
+				return
+			}
+			s.ChannelMessageSend(m.ChannelID, commands.CommandList[msgArray[1]].Exec(msgArray))
+			return
+		} else {
+			s.ChannelMessageSend(m.ChannelID, "unknown error?: end of 'else if'")
 		}
 	}
 }
@@ -78,8 +58,6 @@ func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	// Parse the message as a string array
-	// msgArray[0] should be the prefix
-	// entries after that should be arguments
 	msgArray := strings.Fields(m.Content)
 
 	// Respond to messages containing the prefix
@@ -89,40 +67,16 @@ func lainHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		if len(msgArray) == 1 {
 			s.ChannelMessageSend(m.ChannelID, greetingMsg)
 			return
-		}
-
-		// Check the user input against the  built-in commands
-		switch msgArray[1] {
-		// Return a wholesome image if the user wants a hug
-		case "hug":
-			s.ChannelMessageSend(m.ChannelID, lain.Hug())
-		// Return a wholesome image if the user wants a pat
-		case "pat":
-			s.ChannelMessageSend(m.ChannelID, lain.Pat())
-		// Return a random fortune
-		case "8ball":
-			s.ChannelMessageSend(m.ChannelID, lain.EightBall(msgArray))
-		// Return a random wired site
-		case "site":
-			s.ChannelMessageSend(m.ChannelID, lain.Site())
-		// Return a random gif
-		case "gif":
-			s.ChannelMessageSend(m.ChannelID, lain.Gif())
-		// Return a random image
-		case "image":
-			s.ChannelMessageSend(m.ChannelID, lain.Image())
-		// Help the user
-		case "help":
-			s.ChannelMessageSend(m.ChannelID, "command not implemented yet")
-		// Link to the git repo
-		case "code":
-			s.ChannelMessageSend(m.ChannelID, codeURL)
-		// Ping a pour soul
-		case "penis":
-			s.ChannelMessageSend(m.ChannelID, lain.Peen())
-		// Notify the user if the command is not recognised
-		default:
-			s.ChannelMessageSend(m.ChannelID, "command not recognized")
+		} else if len(msgArray) >= 2 {
+			_, err := lain.CommandList[msgArray[1]]
+			if err == false {
+				s.ChannelMessageSend(m.ChannelID, "command not recognized")
+				return
+			}
+			s.ChannelMessageSend(m.ChannelID, lain.CommandList[msgArray[1]].Exec(msgArray))
+			return
+		} else {
+			s.ChannelMessageSend(m.ChannelID, "unknown error?: end of 'else if'")
 		}
 	}
 }

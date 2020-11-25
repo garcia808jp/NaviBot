@@ -1,125 +1,47 @@
 // NaviBot: Discord bot for digital assistance
-// LainBot's URLs
+// LainBot commands
 
 package lain
 
-var hugSlice = [...]string{
-	"http://i.imgur.com/I8LyQ9L.gif",
-	"http://i.imgur.com/tuH4gqZ.gif",
-	"https://37.media.tumblr.com/f2a878657add13aa09a5e089378ec43d/tumblr_n5uovjOi931tp7433o1_500.gif",
-	"https://66.media.tumblr.com/18fdf4adcb5ad89f5469a91e860f80ba/tumblr_oltayyHynP1sy5k7wo1_400.gif",
-	"https://66.media.tumblr.com/291c8b98b219283f9e21927e7ef6c3f2/tumblr_mzscklfLYx1tptsy9o1_400.gif",
-	"https://i.imgur.com/DBV5Ac9.gif",
-	"https://i.imgur.com/Ed4DlVM.gif",
-	"https://i.imgur.com/IESFOWD.gif",
-	"https://i.imgur.com/Ltmb8aa.gif",
-	"https://i.imgur.com/UMm95sV.gif",
-	"https://i.imgur.com/c3WzMZu.gif",
-	"https://i.imgur.com/fhCVWgN.gif",
-	"https://i.imgur.com/ntqYLGl.gif",
-	"https://i.imgur.com/r9aU2xv.gif",
-	"https://i.imgur.com/x4koMxC.gif",
-	"https://i.pinimg.com/originals/f2/80/5f/f2805f274471676c96aff2bc9fbedd70.gif",
-	"https://media.tenor.com/images/2e1d34d002d73459b6119d57e6a795d6/tenor.gif",
-	"https://media0.giphy.com/media/kvKFM3UWg2P04/giphy.gif?cid=3640f6095c8719d76e614e7932321eae",
-	"https://media1.tenor.com/images/1069921ddcf38ff722125c8f65401c28/tenor.gif?itemid=11074788",
-	"https://media1.tenor.com/images/40aed63f5bc795ed7a980d0ad5c387f2/tenor.gif?itemid=11098589",
-	"https://media1.tenor.com/images/4d89d7f963b41a416ec8a55230dab31b/tenor.gif?itemid=5166500",
-	"https://media1.tenor.com/images/5845f40e535e00e753c7931dd77e4896/tenor.gif?itemid=9920978",
-	"https://media1.tenor.com/images/6088a5ea989ddf19836f655b8555710a/tenor.gif?itemid=12159970",
-	"https://media1.tenor.com/images/62048cf3073b2670e176c470aa1d2714/tenor.gif?itemid=12668675",
-	"https://media1.tenor.com/images/75a607663feb91c59bb4a84ab803fba6/tenor.gif?itemid=11144378",
-	"https://media1.tenor.com/images/7db5f172665f5a64c1a5ebe0fd4cfec8/tenor.gif?itemid=9200935",
-	"https://media1.tenor.com/images/fdefc2134e17de3bb15bc398ff66c6ca/tenor.gif?itemid=9469917",
-	"https://thumbs.gfycat.com/BlindOblongAmurratsnake-small.gif",
-	"https://uploads.disquscdn.com/images/f5ee0928f31e1d867c85a1965005c54b3446595d2ff31989dc06a213679cc272.gif",
+import (
+	// Standard packages
+	"math/rand"
+	"time"
+)
+
+// Register the command for the CommandList
+func init() {
+	imgDoc := Doc{
+		name:        "image - WIP",
+		synopsis:    "image",
+		description: "WIP",
+		example:     "WIP",
+		origin:      "built-in, lain",
+		Exec:        image,
+	}
+
+	CommandList["image"] = imgDoc
 }
 
-var patSlice = [...]string{
-	"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR_B2M0Yc9qyqXjKrqLRAJngXEpM1XUxb9lYeOr9eJdndts0tB",
-	"https://i.gifer.com/7MPC.gif",
-	"https://i.imgur.com/0znUWqT.gif",
-	"https://i.imgur.com/2k0MFIr.gif",
-	"https://i.imgur.com/2lacG7l.gif",
-	"https://i.imgur.com/4ssddEQ.gif",
-	"https://i.imgur.com/F3cjr3n.gif",
-	"https://i.imgur.com/LUypjw3.gif",
-	"https://i.imgur.com/TPqMPka.gif",
-	"https://i.imgur.com/UWbKpx8.gif",
-	"https://i.imgur.com/fp9XJZO.gif",
-	"https://i.imgur.com/sLwoifL.gif",
-	"https://media.tenor.com/images/098689061fc2b850aa29fd4410fa97e7/tenor.gif",
-	"https://media.tenor.com/images/e549c61c9bc3d8defdb0559b358b92a7/tenor.gif",
-	"https://media0.giphy.com/media/BxdqaKAfdcCsg/giphy.gif",
-	"https://thumbs.gfycat.com/ImpurePleasantArthropods-small.gif",
+// image command
+// returns a string containing a random URL in the imageSlice
+func image([]string) (msgOut string) {
+	// Seed the rand package using current time in Unix format
+	rand.Seed(time.Now().UnixNano())
+	// Choose a rondom integer using the length of imageSlice
+	randEntry := rand.Intn(len(imageSlice))
+	// Prevent an error if the integer is out of bounds
+	if randEntry == len(imageSlice) {
+		randEntry = randEntry - 1
+	}
+
+	// Create a string using a random entry in imageSlice
+	msgOut = imageSlice[randEntry]
+	return
 }
 
-var siteSlice = [...]string{
-	"http://lain.angelic-trust.net/wired.html",
-	"http://navi.solutions/",
-	"http://sel.wikia.com/wiki/Serial_Experiments_Lain_Wiki",
-	"http://www.cjas.org/~leng/lain.htm",
-	"https://arisuchan.jp/",
-	"https://arisuchan.jp/cyb/res/1210.html",
-	"https://asphyxia.su/",
-	"https://blackwings.neocities.org/",
-	"https://fauux.neocities.org/",
-	"https://mebious.neocities.org/Layer/Wierd.html",
-	"https://systemspace.link/warning.php",
-	"https://systemspace.network/",
-}
-
-var gifSlice = [...]string{
-	"http://25.media.tumblr.com/tumblr_m2hpn4XlZQ1r73plvo1_500.gif",
-	"http://33.media.tumblr.com/931f551c7c5cd9a0e6a0a558775d81f6/tumblr_mytlj0llZV1rzn9vfo1_250.gif",
-	"http://38.media.tumblr.com/931f551c7c5cd9a0e6a0a558775d81f6/tumblr_mytlj0llZV1rzn9vfo1_500.gif",
-	"http://78.media.tumblr.com/4c9d850a8e5ac7ade46e286142f878f7/tumblr_nw2adbFCyf1uorwlqo1_400.gif",
-	"http://cs.gettysburg.edu/~duncjo01/archive/patterns/lain/1st_day.gif",
-	"http://i.4cdn.org/c/1547054999646.gif",
-	"http://marrowproductions.com/Twisted/wiki/images/4/42/LainTwist.gif",
-	"https://66.media.tumblr.com/6e9d6b5af133b1b3884491d7f1f82983/tumblr_oog4yzg5u01vlb6q0o1_540.gif",
-	"https://66.media.tumblr.com/d4b2745356f425ddbd4e7de8975ecad7/tumblr_phon3a66b51w67s65o1_400.gif",
-	"https://67.media.tumblr.com/5f8ca77f56da64b33145879cfcf73675/tumblr_nt2o8qQQS21tes8zmo1_500.gif",
-	"https://78.media.tumblr.com/bd9272f9b0568794c7dad8ec52c01346/tumblr_n92s34HGM31qjlwa8o1_r1_500.gif",
-	"https://afinde-production.s3.amazonaws.com/uploads/2eee0567-1b6d-4553-bebc-358003433f17.gif",
-	"https://arisuchan.jp/cult/src/1504745451093.gif",
-	"https://arisuchan.jp/cult/src/1504745451093.gif",
-	"https://bakanoweeby.files.wordpress.com/2017/10/lain-2.gif?w=739",
-	"https://cdn.4archive.org/img/6a6KxdZ.gif",
-	"https://cdn.discordapp.com/attachments/528841759879331872/536465067508498432/we_be_walking.gif",
-	"https://data.whicdn.com/images/243034617/original.gif",
-	"https://desu-usergeneratedcontent.xyz/mu/image/1525/23/1525239710532.gif",
-	"https://gifimage.net/wp-content/uploads/2017/08/serial-experiments-lain-gif-21.gif",
-	"https://i.4pcdn.org/pol/1445669927592.gif",
-	"https://i.4pcdn.org/s4s/1532546585395.gif",
-	"https://i.4pcdn.org/tg/1516038669389.gif",
-	"https://i.gifer.com/8LV3.gif",
-	"https://i.gifer.com/C2pQ.gif",
-	"https://i.gifer.com/VvKY.gif",
-	"https://i.imgur.com/6UxYXDJ.gif",
-	"https://i.imgur.com/V4vSSo2.gif",
-	"https://i.imgur.com/eqkzFu0.gif",
-	"https://i.kym-cdn.com/photos/images/original/001/130/238/951.gif",
-	"https://i.makeagif.com/media/10-10-2015/a4Whsh.gif",
-	"https://img.fireden.net/a/image/1457/15/1457158385482.gif",
-	"https://img.fireden.net/a/image/1532/92/1532920863393.gif",
-	"https://img.fireden.net/v/image/1450/34/1450340196726.gif",
-	"https://img.fireden.net/v/image/1454/27/1454275799295.gif",
-	"https://imgur.com/oSNisPS",
-	"https://media.giphy.com/media/112CeAWuyhQX1C/giphy.gif",
-	"https://media.giphy.com/media/5vAuoSpIK7uh2/source.gif",
-	"https://media.giphy.com/media/cz1fqXcuMymgo/giphy.gif",
-	"https://media.giphy.com/media/h7J6rblcKKPDi/giphy.gif",
-	"https://media1.tenor.com/images/83eeeeeb64813c10236111e63f2080a8/tenor.gif?itemid=11578021",
-	"https://media1.tenor.com/images/8d397680ad0f8fce375ac7c7bd8b4fad/tenor.gif?itemid=11598206",
-	"https://orig00.deviantart.net/868b/f/2018/226/4/a/lain_gif_remaster_final_by_deznak-dck4l98.gif",
-	"https://pa1.narvii.com/6318/77ba9762f081a004831cbdbc2fc2c11cc4a3a602_hq.gif",
-	"https://steamusercontent-a.akamaihd.net/ugc/110732351534804953/6170F4AC4C6080A353792551E2D9F7E61719713D/",
-	"https://steamusercontent-a.akamaihd.net/ugc/859477345548989008/23073CCB3B1FE199008FB2A2F1CC7A4328A3F958/",
-	"https://steamusercontent-a.akamaihd.net/ugc/882000754018213605/C5280F51D7FEF548A21B7FDE639F8E949E9052FF/",
-	"https://thumbs.gfycat.com/KindheartedIdleHoneycreeper-max-1mb.gif",
-}
-
+// image slice
+// contains a list of images with Lain
 var imageSlice = [...]string{
 	"http://33.media.tumblr.com/f3307a1bb2de561902c3f4aa94819b90/tumblr_nttc6uSVuq1u4zgnro1_400.gif",
 	"http://41.media.tumblr.com/58ab8b9e534390ab996d0fa15ce0cede/tumblr_notf143Nit1qftmhbo1_500.png",
