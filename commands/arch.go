@@ -1,5 +1,5 @@
 // NaviBot: Discord bot for digital assistance
-// wiki command
+// arch command
 
 package commands
 
@@ -15,21 +15,21 @@ import (
 
 // Register the command for the CommandList
 func init() {
-	wikiDoc := command{
-		name:        "wiki - link to pages in wikipedia",
-		synopsis:    "wiki __query__",
+	archDoc := command{
+		name:        "arch - search the arch wiki",
+		synopsis:    "arch __query__",
 		description: "WIP, only accepts one word for the query",
 		example:     "WIP",
 		origin:      "built-in",
-		Exec:        wiki,
+		Exec:        arch,
 	}
 
-	CommandList["wiki"] = wikiDoc
+	CommandList["arch"] = archDoc
 }
 
-// wiki command
+// arch command
 // interacts with the MediaWiki API to make a URL of the requested page
-func wiki(msgArray []string) (msgOut string) {
+func arch(msgArray []string) (msgOut string) {
 	// quit if there are not enough arguments
 	if len(msgArray) == 2 {
 		msgOut = "command accepts one word for the query at the moment"
@@ -40,9 +40,9 @@ func wiki(msgArray []string) (msgOut string) {
 	msgArray[0], msgArray[1] = "", ""
 	userQuery := strings.Join(msgArray, " ")
 
-	// wikipedia URLs for the MediaWiki API and article path
+	// arch wiki URLs for the MediaWiki API and article path
 	// DOES NOT ACCOUNT FOR SPECIAL NAMESPACE PATHS
-	const wikiAPI, wikiIndex string = "https://en.wikipedia.org/w/api.php", "https://en.wikipedia.org/wiki/"
+	const wikiAPI, wikiIndex string = "https://wiki.archlinux.org/api.php", "https://wiki.archlinux.org/index.php/"
 
 	// Initialize a *Client with New(), specifying the wiki's API URL
 	// and your HTTP User-Agent. Try to use a meaningful User-Agent.

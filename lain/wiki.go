@@ -1,7 +1,7 @@
 // NaviBot: Discord bot for digital assistance
-// wiki command
+// LainBot commands
 
-package commands
+package lain
 
 import (
 	"strings"
@@ -15,8 +15,8 @@ import (
 
 // Register the command for the CommandList
 func init() {
-	wikiDoc := command{
-		name:        "wiki - link to pages in wikipedia",
+	wikiDoc := Doc{
+		name:        "wiki - link to pages in the lain wiki",
 		synopsis:    "wiki __query__",
 		description: "WIP, only accepts one word for the query",
 		example:     "WIP",
@@ -40,9 +40,9 @@ func wiki(msgArray []string) (msgOut string) {
 	msgArray[0], msgArray[1] = "", ""
 	userQuery := strings.Join(msgArray, " ")
 
-	// wikipedia URLs for the MediaWiki API and article path
+	// lain.wiki URLs for the MediaWiki API and article path
 	// DOES NOT ACCOUNT FOR SPECIAL NAMESPACE PATHS
-	const wikiAPI, wikiIndex string = "https://en.wikipedia.org/w/api.php", "https://en.wikipedia.org/wiki/"
+	const wikiAPI, wikiIndex string = "https://lain.wiki/api.php", "https://lain.wiki/wiki/"
 
 	// Initialize a *Client with New(), specifying the wiki's API URL
 	// and your HTTP User-Agent. Try to use a meaningful User-Agent.

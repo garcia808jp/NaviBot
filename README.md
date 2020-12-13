@@ -34,8 +34,7 @@ _NaviBot is an open source, modular (soon<sup>TM</sup>), cross-platform Discord 
 
 ### Notes
 * Testing is currently limited to Void Linux on PC and Raspberry Pi B Rev 2 (2011.12), and 9front [2020/05/28](http://9front.org/releases/2020/05/28/0/) on PC
-* If running on 9front, please be sure that TLS has the current certificates, which can be done by executing ```shell
-hget https://curl.haxx.se/ca/cacert.pem >/sys/lib/tls/ca.pem```
+* If running on 9front, please be sure that TLS has the current certificates, which can be done by executing `hget https://curl.haxx.se/ca/cacert.pem >/sys/lib/tls/ca.pem`.
 * The configuration file `nenv` must be in the same directory as the bot
 
 ![navibot-9front](doc/Screenshot_9front_2020-08-10_19:32:37.png)
@@ -55,7 +54,7 @@ hget https://curl.haxx.se/ca/cacert.pem >/sys/lib/tls/ca.pem```
 * 9front FQA
 <http://fqa.9front.org/>
 * 9front FQA PDF
-<http://fqa.9front.org/dash1.plan9haters.pdf>
+<http://fqa.9front.org/dash1.emailschaden.pdf>
 
 ### Extra
 * NAVI
