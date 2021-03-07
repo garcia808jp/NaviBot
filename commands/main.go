@@ -1,5 +1,5 @@
-// NaviBot: Discord bot for digital assistance
-// Bult-in commands
+// NaviBot: Lain resource Discord bot
+
 
 package commands
 
@@ -8,9 +8,9 @@ import "time"
 // module project site
 const codeURL string = "https://github.com/phossil/NaviBot/"
 
-// command struct
+// Command struct
 // provides access to commands and information about them
-type command struct {
+type Command struct {
 	name        string
 	synopsis    string
 	description string
@@ -19,25 +19,25 @@ type command struct {
 	Exec        func([]string) string
 }
 
-// CodeDoc documentation
+// CodeCommand documentation
 // Define the help command
-var codeDoc = command{
-	name:        "code - link to project site",
+var codeCommand = Command{
+	name:        "code - link to module project site",
 	synopsis:    "code",
 	description: "WIP",
 	example:     "WIP",
-	origin:      "built-in",
+	origin:      "built-in, lain",
 	Exec:        code,
 }
 
 var (
 	// CommandList map
-	// contains strings and Doc structs to register commands for the handler
-	CommandList = map[string]command{"code": codeDoc}
+	// contains strings and Command structs to register commands for the handler
+	CommandList = map[string]Command{"code": codeCommand}
 
-	// empty helpDoc struct
+	// empty helpCommand struct
 	// placed here to prevent an initializition loop
-	helpDoc command
+	helpCommand Command
 
 	// for use with the uptime command
 	startTime time.Time
@@ -47,17 +47,17 @@ func init() {
 	// Grab the time on package startup
 	startTime = time.Now()
 
-	// helpDoc documentation
+	// helpCommand struct
 	// Define the help command
-	helpDoc = command{
+	helpCommand = Command{
 		name:        "help - display help content",
 		synopsis:    "help __command__",
 		description: "The help command provides information on other commands available within the bot. It is vaguely modelled in the style of *nix man pages.",
 		example:     "`man`, like the other built-in commands, is called after the configured prefix:\t`$PREFIX help help`",
-		origin:      "built-in",
+		origin:      "built-in, lain",
 		Exec:        help,
 	}
-	CommandList["help"] = helpDoc
+	CommandList["help"] = helpCommand
 }
 
 // help command
@@ -65,7 +65,7 @@ func init() {
 func help(msgArray []string) (msgOut string) {
 	// If there are no arguments notify the user
 	if len(msgArray) == 2 {
-		return helpDoc.name
+		return helpCommand.name
 	}
 	if len(msgArray) >= 3 {
 		_, err := CommandList[msgArray[2]]

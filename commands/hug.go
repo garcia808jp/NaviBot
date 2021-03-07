@@ -1,7 +1,7 @@
-// NaviBot: Discord bot for digital assistance
-// LainBot commands
+// NaviBot: Lain resource Discord bot
 
-package lain
+
+package commands
 
 import (
 	// Standard packages
@@ -11,7 +11,7 @@ import (
 
 // Register the command for the CommandList
 func init() {
-	hugDoc := Doc{
+	hugCommand := Command{
 		name:        "hug - WIP",
 		synopsis:    "hug",
 		description: "WIP",
@@ -20,7 +20,7 @@ func init() {
 		Exec:        hug,
 	}
 
-	CommandList["hug"] = hugDoc
+	CommandList["hug"] = hugCommand
 }
 
 // hug command

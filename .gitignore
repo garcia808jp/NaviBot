@@ -1,4 +1,4 @@
 nenv
 bin/
-lain/original/
-lain/processed/
+commands/original/
+commands/processed/

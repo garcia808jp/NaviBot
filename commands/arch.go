@@ -1,5 +1,5 @@
-// NaviBot: Discord bot for digital assistance
-// arch command
+// NaviBot: Lain resource Discord bot
+
 
 package commands
 
@@ -15,7 +15,7 @@ import (
 
 // Register the command for the CommandList
 func init() {
-	archDoc := command{
+	archCommand := Command{
 		name:        "arch - search the arch wiki",
 		synopsis:    "arch __query__",
 		description: "WIP, only accepts one word for the query",
@@ -24,7 +24,7 @@ func init() {
 		Exec:        arch,
 	}
 
-	CommandList["arch"] = archDoc
+	CommandList["arch"] = archCommand
 }
 
 // arch command

@@ -1,5 +1,5 @@
-// NaviBot: Discord bot for digital assistance
-// uptime command
+// NaviBot: Lain resource Discord bot
+
 
 package commands
 
@@ -7,7 +7,7 @@ import "time"
 
 // Register the command for the CommandList
 func init() {
-	uptimeDoc := command{
+	uptimeDoc := Command{
 		name:        "uptime - report the bot's uptime",
 		synopsis:    "uptime",
 		description: "WIP",

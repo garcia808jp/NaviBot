@@ -1,11 +1,11 @@
-// NaviBot: Discord bot for digital assistance
-// ping command
+// NaviBot: Lain resource Discord bot
+
 
 package commands
 
 // Register the command for the CommandList
 func init() {
-	pingDoc := command{
+	pingCommand := Command{
 		name:        "ping - classic bot command",
 		synopsis:    "ping **|** pong",
 		description: "Returns *pong* if the command was *ping*, *ping* if *pong*, otherwise the bot questions its existence",
@@ -14,8 +14,8 @@ func init() {
 		Exec:        ping,
 	}
 
-	CommandList["ping"] = pingDoc
-	CommandList["pong"] = pingDoc
+	CommandList["ping"] = pingCommand
+	CommandList["pong"] = pingCommand
 }
 
 // ping command

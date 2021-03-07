@@ -1,7 +1,7 @@
-// NaviBot: Discord bot for digital assistance
-// LainBot commands
+// NaviBot: Lain resource Discord bot
 
-package lain
+
+package commands
 
 import (
 	// Standard packages
@@ -11,7 +11,7 @@ import (
 
 // Register the command for the CommandList
 func init() {
-	songDoc := Doc{
+	songCommand := Command{
 		name:        "song - WIP",
 		synopsis:    "song",
 		description: "WIP",
@@ -20,7 +20,7 @@ func init() {
 		Exec:        song,
 	}
 
-	CommandList["song"] = songDoc
+	CommandList["song"] = songCommand
 }
 
 // song command

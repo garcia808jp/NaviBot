@@ -1,7 +1,7 @@
-// NaviBot: Discord bot for digital assistance
-// LainBot commands
+// NaviBot: Lain resource Discord bot
 
-package lain
+
+package commands
 
 import (
 	// Standard packages
@@ -11,7 +11,7 @@ import (
 
 // Register the command for the CommandList
 func init() {
-	ebDoc := Doc{
+	ebCommand := Command{
 		name:        "8ball - divination with the goddess herself",
 		synopsis:    "8ball __question__",
 		description: "WIP",
@@ -20,7 +20,7 @@ func init() {
 		Exec:        eightBall,
 	}
 
-	CommandList["8ball"] = ebDoc
+	CommandList["8ball"] = ebCommand
 }
 
 // eightBall command
