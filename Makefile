@@ -1,11 +1,14 @@
 .DEFAULT_GOAL: build
-.PHONY: rpi cirno prep verify update run test rm
+.PHONY: build-lb rpi cirno prep verify update run test rm
 
 build: prep
 	go build -o bin/NaviBot
 
+build-lb: prep
+	go build -o bin/NaviBot -tags lainbot
+
 rpi: prep
-	GOOS="linux" GOARCH="arm" GOARM="6" go build -o bin/NaviBot-RPi 
+	GOOS="linux" GOARCH="arm" GOARM="6" go build -o bin/NaviBot-RPi
 
 cirno: prep
 	GOOS="plan9" GOARCH="amd64" go build -o bin/NaviBot-9f

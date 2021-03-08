@@ -31,8 +31,11 @@ _NaviBot is an open source and cross-platform Discord bot for Lain._
 * Testing is currently limited to Void Linux amd64 and Raspberry Pi B Rev 2
  (2011.12), and 9front amd64 [2020/05/28](http://9front.org/releases/2020/05/28/0/)
 * If running on 9front, please be sure that TLS has the current certificates,
- which can be done by executing `hget https://curl.haxx.se/ca/cacert.pem >/sys/lib/tls/ca.pem`.
+ which can be done by executing `hget https://curl.haxx.se/ca/cacert.pem >/sys/lib/tls/ca.pem`
 * The configuration file `nenv` must be in the same directory as the bot
+* Much of the functionality that was seen in lainbot must be enabled at compile-time
+	* Please check the Makefile for how to use build tags if you wish to use
+	those commands after cross compiling
 
 ![navibot-9front](doc/Screenshot_9front_2020-08-10_19:32:37.png)
 *early alpha of NaviBot running on 9front*

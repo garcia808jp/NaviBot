@@ -1,6 +1,5 @@
 // NaviBot: Lain resource Discord bot
 
-
 package commands
 
 // Register the command for the CommandList

@@ -1,5 +1,5 @@
+// +build lainbot
 // NaviBot: Lain resource Discord bot
-
 
 package commands
 
@@ -47,7 +47,6 @@ var songSlice = [...]string{
 	"https://youtu.be/4-PkAQcuZOw",
 	"https://youtu.be/4DnCETKeHkc",
 	"https://youtu.be/5dbi4N6NGn4",
-	"https://youtu.be/H221MRRgFZs",
 	"https://youtu.be/H221MRRgFZs?list=PLLiA91TyEc8tL1jj8RZ0zCkG1QCDUd8YX",
 	"https://youtu.be/H40u9ufvSVo",
 	"https://youtu.be/IQicDkntMVA",

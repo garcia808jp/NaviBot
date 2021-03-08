@@ -1,6 +1,5 @@
 // NaviBot: Lain resource Discord bot
 
-
 package commands
 
 import "time"

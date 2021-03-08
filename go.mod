@@ -3,10 +3,8 @@ module github.com/phossil/NaviBot
 go 1.14
 
 require (
-	9fans.net/go v0.0.2 // indirect
-	9fans.net/go/acme/Dict v0.0.1 // indirect
 	cgt.name/pkg/go-mwclient v1.2.0
-	github.com/antonholmquist/jason v1.0.0
+	github.com/antonholmquist/jason v1.0.0 // indirect
 	github.com/bwmarrin/discordgo v0.23.2
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/joho/godotenv v1.3.0
